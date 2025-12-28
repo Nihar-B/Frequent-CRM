@@ -1,4 +1,5 @@
 <?php
+
 require_once 'functions.php';
 require_once 'db.php';
 
@@ -66,10 +67,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             font-family: 'Inter', sans-serif;
             background-color: var(--bg-color);
             color: var(--text-main);
-            height: 100vh;
+            /* Changed from fixed height to min-height for better mobile scrolling */
+            min-height: 100vh; 
             display: flex;
             align-items: center;
             justify-content: center;
+            /* Added padding to prevent card from touching edges on small screens */
+            padding: 20px; 
             
             /* Dot Pattern Background */
             background-image: radial-gradient(#e5e7eb 1px, transparent 1px);
@@ -200,6 +204,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             background-color: var(--accent);
             border-color: #000;
         }
+
+        /* --- RESPONSIVE ADJUSTMENTS --- */
+        @media (max-width: 576px) {
+            .login-card {
+                padding: 25px; /* Reduce internal padding */
+                box-shadow: 6px 6px 0 #000; /* Slightly smaller shadow */
+            }
+            
+            .brand-header {
+                margin-bottom: 20px;
+                padding-bottom: 15px;
+            }
+
+            .brand-header i {
+                font-size: 2rem;
+            }
+
+            h4.brand-font {
+                font-size: 1.25rem;
+            }
+
+            .btn-neo {
+                padding: 12px; /* Slightly smaller button for mobile */
+            }
+        }
     </style>
 </head>
 <body>
@@ -207,7 +236,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="login-card">
         <div class="brand-header">
             <i class="bi bi-box-seam-fill mb-2 d-block"></i>
-            <h4 class="brand-font m-0">SARDER_INC.</h4>
+            <h4 class="brand-font m-0">FrequentCRM</h4>
             <small class="text-muted fw-bold">INTERNAL CONSOLE</small>
         </div>
         
@@ -235,7 +264,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             
             <div class="mb-4">
                 <label>Access Key</label>
-                <input type="password" name="password" class="form-control" required placeholder="••••••••">
+                <input type="password" name="password" class="form-control" required placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;">
             </div>
             
             <div class="d-flex justify-content-between align-items-center mb-4">

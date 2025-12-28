@@ -1,481 +1,961 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>FrequentCRM | Join the Waiting List</title>
+
     
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
     
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
 
+
+
     <style>
+
         /* --- NEO-BRUTALIST THEME VARIABLES --- */
+
         :root {
+
             --bg-body: #ffffff;
+
             --text-main: #000000;
+
             --border-thick: 3px solid #000000;
+
             --border-thin: 2px solid #000000;
+
             --shadow-hard: 6px 6px 0px #000000;
+
             --shadow-hover: 10px 10px 0px #000000;
+
             
+
             /* Brand Colors */
+
             --c-purple: #b084fc;
+
             --c-green: #4ade80;
+
             --c-yellow: #facc15;
+
             --c-red: #ff4d4d;
+
             --c-grey: #f3f4f6;
+
         }
+
+
 
         /* --- GLOBAL STYLES --- */
+
         body {
+
             font-family: 'Inter', sans-serif;
+
             background-color: var(--bg-body);
+
             color: var(--text-main);
+
             overflow-x: hidden;
+
             background-image: radial-gradient(#000 1px, transparent 1px);
+
             background-size: 30px 30px;
+
         }
+
+
 
         h1, h2, h3, h4, h5, .brand-font, .nav-link, .btn {
+
             font-family: 'Space Mono', monospace;
+
             font-weight: 700;
+
             letter-spacing: -0.04em;
+
             text-transform: uppercase;
+
         }
+
+
 
         /* --- BUTTONS --- */
+
         .btn-neo {
+
             background-color: #fff;
+
             color: #000;
+
             border: var(--border-thick);
+
             border-radius: 0;
+
             padding: 12px 24px;
+
             box-shadow: var(--shadow-hard);
+
             transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
             font-weight: 900;
+
             position: relative;
+
         }
+
+
 
         .btn-neo:hover {
+
             transform: translate(-2px, -2px);
+
             box-shadow: var(--shadow-hover);
+
             background-color: var(--c-yellow);
+
             color: #000;
+
         }
+
+
 
         .btn-neo:active {
+
             transform: translate(4px, 4px);
+
             box-shadow: 0px 0px 0px #000;
+
         }
+
+
 
         .btn-primary-neo {
+
             background-color: var(--c-purple);
+
         }
+
+
 
         /* --- NAVBAR --- */
+
         .navbar {
+
             border-bottom: var(--border-thick);
+
             background: #fff;
+
             padding: 20px 0;
+
             z-index: 1000;
+
         }
+
         .navbar-brand {
+
             font-size: 1.5rem;
+
             background: #000;
+
             color: #fff !important;
+
             padding: 5px 15px;
+
             transform: skew(-10deg);
+
         }
+
+
 
         /* --- HERO SECTION --- */
+
         .hero-section {
+
             padding: 100px 0;
+
             position: relative;
+
             background: #fff;
+
             border-bottom: var(--border-thick);
+
         }
+
         
+
         .hero-title {
+
             font-size: 4rem;
+
             line-height: 0.9;
+
             margin-bottom: 2rem;
+
             font-weight: 900;
+
         }
+
+
 
         .hero-img-container {
+
             border: var(--border-thick);
+
             box-shadow: var(--shadow-hard);
+
             background: var(--c-grey);
+
             padding: 20px;
+
             transform: rotate(2deg);
+
             transition: 0.3s;
+
         }
+
         .hero-img-container:hover {
+
             transform: rotate(0deg) scale(1.02);
+
             box-shadow: var(--shadow-hover);
+
         }
+
+
 
         /* --- MARQUEE --- */
+
         .marquee-container {
+
             background: var(--c-yellow);
+
             border-bottom: var(--border-thick);
+
             overflow: hidden;
+
             white-space: nowrap;
+
             padding: 15px 0;
+
         }
+
         .marquee-content {
+
             display: inline-block;
+
             animation: marquee 20s linear infinite;
+
             font-family: 'Space Mono', monospace;
+
             font-weight: 900;
+
             font-size: 1.5rem;
+
         }
+
         @keyframes marquee {
+
             0% { transform: translateX(0); }
+
             100% { transform: translateX(-50%); }
+
         }
+
+
 
         /* --- FEATURES --- */
+
         .feature-card {
+
             border: var(--border-thick);
+
             background: #fff;
+
             padding: 30px;
+
             height: 100%;
+
             box-shadow: var(--shadow-hard);
+
             transition: 0.2s;
+
         }
+
         .feature-card:hover {
+
             background: var(--c-green);
+
             transform: translate(-4px, -4px);
+
             box-shadow: var(--shadow-hover);
+
         }
+
         .icon-box {
+
             font-size: 2.5rem;
+
             margin-bottom: 1rem;
+
         }
+
         
+
         /* --- FOOTER --- */
+
         footer {
+
             border-top: var(--border-thick);
+
             background: #000;
+
             color: #fff;
+
             padding: 60px 0;
+
         }
+
         footer a { color: #fff; text-decoration: none; }
+
         footer a:hover { color: var(--c-yellow); text-decoration: underline; }
 
+
+
         /* --- MODAL STYLES (Waiting List) --- */
+
         .modal-content {
+
             border: var(--border-thick);
+
             border-radius: 0;
+
             box-shadow: 15px 15px 0 #000;
+
         }
+
         .modal-header {
+
             background: var(--c-yellow);
+
             border-bottom: var(--border-thick);
+
             border-radius: 0;
+
         }
+
         .form-control {
+
             border: 2px solid #000;
+
             border-radius: 0;
+
             padding: 12px;
+
             font-weight: 600;
+
             background: #f8f9fa;
+
         }
+
         .form-control:focus {
+
             box-shadow: 4px 4px 0 #000;
+
             border-color: #000;
+
             background: #fff;
+
         }
+
         
+
         /* Mobile tweaks */
+
         @media (max-width: 768px) {
+
             .hero-title { font-size: 2.5rem; }
+
         }
+
     </style>
+
 </head>
+
 <body>
 
+
+
     <nav class="navbar navbar-expand-lg sticky-top">
+
         <div class="container">
+
             <a class="navbar-brand" href="#">FrequentCRM</a>
+
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" style="border: 2px solid #000; border-radius: 0;">
+
                 <i class="bi bi-list fs-1"></i>
+
             </button>
+
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+
                 <ul class="navbar-nav align-items-center gap-4 mt-3 mt-lg-0">
+
                     <li class="nav-item"><a class="nav-link" href="#features">Features</a></li>
+
                     <li class="nav-item">
+
                         <a href="login.php" class="btn btn-neo">LOGIN</a>
+
                     </li>
+
                     <li class="nav-item">
+
                         <button class="btn btn-neo btn-primary-neo" data-bs-toggle="modal" data-bs-target="#waitlistModal">GET ACCESS</button>
+
                     </li>
+
                 </ul>
+
             </div>
+
         </div>
+
     </nav>
 
+
+
     <section class="hero-section">
+
         <div class="container">
+
             <div class="row align-items-center">
+
                 <div class="col-lg-6 mb-5 mb-lg-0">
+
                     <div class="d-inline-block bg-black text-white px-2 py-1 mb-3 fw-bold small">v2.0 BETA</div>
+
                     <h1 class="hero-title">STOP LOSING <span style="background: var(--c-yellow); padding: 0 10px;">REVENUE</span> TO CHAOS.</h1>
+
                     <p class="lead fw-bold mb-4" style="max-width: 450px; font-family: 'Space Mono';">
+
                         The brutishly simple CRM. We are currently accepting partners for our private beta.
+
                     </p>
+
                     <div class="d-flex gap-3 flex-wrap">
+
                         <button class="btn btn-neo btn-primary-neo btn-lg" data-bs-toggle="modal" data-bs-target="#waitlistModal">JOIN WAITING LIST</button>
+
                         <a href="#features" class="btn btn-neo btn-lg">HOW IT WORKS</a>
+
                     </div>
+
                     <div class="mt-4 small fw-bold">
+
                         <i class="bi bi-check-lg text-success"></i> INSTANT INTEGRATION
-                        <span class="mx-2">•</span>
+
+                        <span class="mx-2">â€¢</span>
+
                         <i class="bi bi-check-lg text-success"></i> DATA OWNERSHIP
+
                     </div>
+
                 </div>
+
                 <div class="col-lg-6">
+
                     <div class="hero-img-container">
+
                         <div style="border-bottom: 2px solid #000; padding-bottom: 10px; margin-bottom: 15px; display:flex; justify-content:space-between;">
+
                             <div style="width: 100px; height: 20px; background: #000;"></div>
+
                             <div style="width: 20px; height: 20px; background: var(--c-red); border-radius: 50%; border: 2px solid #000;"></div>
+
                         </div>
+
                         <div class="row g-2">
+
                             <div class="col-4">
+
                                 <div style="height: 150px; border: 2px solid #000; background: #fff; box-shadow: 4px 4px 0 #000;"></div>
+
                             </div>
+
                             <div class="col-8">
+
                                 <div style="height: 150px; border: 2px solid #000; background: #fff; box-shadow: 4px 4px 0 #000; display:flex; align-items:end; justify-content: space-around; padding-bottom: 10px;">
+
                                     <div style="width: 15%; height: 40%; background: #000;"></div>
+
                                     <div style="width: 15%; height: 60%; background: #000;"></div>
+
                                     <div style="width: 15%; height: 30%; background: #000;"></div>
+
                                     <div style="width: 15%; height: 80%; background: var(--c-purple);"></div>
+
                                 </div>
+
                             </div>
+
                         </div>
+
                     </div>
+
                 </div>
+
             </div>
+
         </div>
+
     </section>
+
+
 
     <div class="marquee-container">
+
         <div class="marquee-content">
-            MANAGE LEADS • CLOSE DEALS • TRACK REVENUE • NO NONSENSE • MANAGE LEADS • CLOSE DEALS • TRACK REVENUE • NO NONSENSE • MANAGE LEADS • CLOSE DEALS • TRACK REVENUE • NO NONSENSE • 
+
+            MANAGE LEADS â€¢ CLOSE DEALS â€¢ TRACK REVENUE â€¢ NO NONSENSE â€¢ MANAGE LEADS â€¢ CLOSE DEALS â€¢ TRACK REVENUE â€¢ NO NONSENSE â€¢ MANAGE LEADS â€¢ CLOSE DEALS â€¢ TRACK REVENUE â€¢ NO NONSENSE â€¢ 
+
         </div>
+
     </div>
+
+
 
     <section id="features" class="py-5" style="border-bottom: var(--border-thick);">
+
         <div class="container py-5">
+
             <div class="row mb-5">
+
                 <div class="col-lg-8">
+
                     <h2 class="display-4 fw-bold">EVERYTHING YOU NEED.<br>NOTHING YOU DON'T.</h2>
+
                 </div>
+
             </div>
+
             
+
             <div class="row g-4">
+
                 <div class="col-md-4">
+
                     <div class="feature-card">
+
                         <div class="icon-box"><i class="bi bi-kanban"></i></div>
+
                         <h4>Visual Pipeline</h4>
+
                         <p>Drag and drop deals like a boss. See exactly where your money is stuck.</p>
+
                     </div>
+
                 </div>
+
                 <div class="col-md-4">
+
                     <div class="feature-card">
+
                         <div class="icon-box"><i class="bi bi-graph-up-arrow"></i></div>
+
                         <h4>Brutal Analytics</h4>
+
                         <p>Honest charts. Revenue trends. No vanity metrics, just cold hard numbers.</p>
+
                     </div>
+
                 </div>
+
                 <div class="col-md-4">
+
                     <div class="feature-card">
+
                         <div class="icon-box"><i class="bi bi-code-square"></i></div>
+
                         <h4>Web-to-Lead</h4>
+
                         <p>Generate a form, paste the HTML, and watch leads fly directly into your pipeline.</p>
+
                     </div>
+
                 </div>
+
             </div>
+
         </div>
+
     </section>
+
+
 
     <section class="py-5 bg-black text-white">
+
         <div class="container text-center">
+
             <div class="row">
+
                 <div class="col-md-4 mb-4 mb-md-0">
+
                     <h2 class="display-2 fw-bold text-decoration-underline" style="color: var(--c-green);">$4M+</h2>
+
                     <p class="h5 mt-2">REVENUE TRACKED</p>
+
                 </div>
+
                 <div class="col-md-4 mb-4 mb-md-0">
+
                     <h2 class="display-2 fw-bold text-decoration-underline" style="color: var(--c-purple);">15k+</h2>
+
                     <p class="h5 mt-2">DEALS CLOSED</p>
+
                 </div>
+
                 <div class="col-md-4">
+
                     <h2 class="display-2 fw-bold text-decoration-underline" style="color: var(--c-yellow);">99%</h2>
+
                     <p class="h5 mt-2">UPTIME</p>
+
                 </div>
+
             </div>
+
         </div>
+
     </section>
+
+
 
     <section class="py-5 bg-white">
+
         <div class="container text-center py-5">
+
             <h2 class="display-3 fw-bold mb-4">READY TO CLOSE?</h2>
+
             <p class="lead mb-5 fw-bold">Join 1,000+ sales reps who stopped organizing and started selling.</p>
+
             <button class="btn btn-neo btn-primary-neo btn-lg px-5 py-3 fs-4" data-bs-toggle="modal" data-bs-target="#waitlistModal">GET STARTED NOW</button>
+
         </div>
+
     </section>
 
+
+
     <footer>
+
         <div class="container">
+
             <div class="row">
+
                 <div class="col-md-4 mb-4">
+
                     <h4 class="mb-3">FrequentCRM</h4>
+
                     <p class="small text-secondary">
+
                         Built for speed. Designed for sales.<br>
-                        &copy; 2025 Sarder Solutions.
+
+                        &copy; 2025 Thai Jashe Group.
+
                     </p>
+
                 </div>
+
                 <div class="col-md-4 offset-md-4">
+
                     <h5 class="mb-3 text-white">Don't miss out</h5>
+
                     <button class="btn btn-neo border-0 bg-white text-dark py-2 w-100" data-bs-toggle="modal" data-bs-target="#waitlistModal">JOIN WAITING LIST</button>
+
                 </div>
+
             </div>
+
         </div>
+
     </footer>
 
+
+
     <div class="modal fade" id="waitlistModal" tabindex="-1" aria-hidden="true">
+
         <div class="modal-dialog modal-dialog-centered">
+
             <div class="modal-content">
+
                 <div class="modal-header">
+
                     <h5 class="modal-title fw-bold" style="font-family: 'Space Mono'">// INITIALIZE_SEQUENCE</h5>
+
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
                 </div>
+
                 <div class="modal-body p-4">
+
                     <p class="fw-bold mb-4">Complete the form to request access to the autonomous engine.</p>
+
                     
+
                     <form id="leadForm">
+
                         <input type="hidden" name="api_key" value="crm_secret_key_123">
+
                         <input type="hidden" name="source" value="Website Waiting List">
 
+
+
                         <div class="row mb-3">
+
                             <div class="col">
+
                                 <label class="small fw-bold mb-1">First Name</label>
+
                                 <input type="text" name="first_name" class="form-control" required placeholder="JANE">
+
                             </div>
+
                             <div class="col">
+
                                 <label class="small fw-bold mb-1">Last Name</label>
+
                                 <input type="text" name="last_name" class="form-control" required placeholder="DOE">
+
                             </div>
+
                         </div>
 
+
+
                         <div class="mb-3">
+
                             <label class="small fw-bold mb-1">Work Email</label>
+
                             <input type="email" name="email" class="form-control" required placeholder="JANE@CORP.NET">
+
                         </div>
+
                         
+
                         <div class="mb-3">
+
                             <label class="small fw-bold mb-1">Company</label>
+
                             <input type="text" name="company" class="form-control" placeholder="ACME INC">
+
                         </div>
+
+
 
                         <div class="mb-4">
+
                             <label class="small fw-bold mb-1">Estimated Budget ($)</label>
+
                             <input type="number" name="potential_value" class="form-control" placeholder="50000">
+
                         </div>
+
+
 
                         <button type="submit" class="btn btn-neo btn-primary-neo w-100 py-3">
+
                             <span id="btnText">REQUEST ACCESS >></span>
+
                             <div id="btnLoader" class="spinner-border spinner-border-sm ms-2" style="display:none;"></div>
+
                         </button>
+
                         
+
                         <div id="successMessage" class="mt-3 p-3 text-center fw-bold" style="display:none; background: #4ade80; border: 2px solid #000; box-shadow: 4px 4px 0 #000;">
+
                             <i class="bi bi-check-square-fill me-1"></i> DATA TRANSMITTED.
+
                         </div>
+
                         <div id="errorMessage" class="mt-3 p-3 text-center text-white fw-bold" style="display:none; background: #ff4d4d; border: 2px solid #000; box-shadow: 4px 4px 0 #000;">
+
                             <i class="bi bi-x-octagon-fill me-1"></i> TRANSMISSION ERROR.
+
                         </div>
+
                     </form>
+
                 </div>
+
             </div>
+
         </div>
+
     </div>
 
+
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
     <script>
+
         // Simple scroll reveal effect
+
         window.addEventListener('scroll', reveal);
 
+
+
         function reveal(){
+
             var reveals = document.querySelectorAll('.feature-card');
+
             for(var i = 0; i < reveals.length; i++){
+
                 var windowheight = window.innerHeight;
+
                 var revealtop = reveals[i].getBoundingClientRect().top;
+
                 var revealpoint = 150;
 
+
+
                 if(revealtop < windowheight - revealpoint){
+
                     // reveals[i].classList.add('active');
+
                 }
+
             }
+
         }
 
+
+
         // Form Submission Logic
+
         document.getElementById('leadForm').addEventListener('submit', function(e) {
+
             e.preventDefault();
+
             
+
             const btn = document.querySelector('button[type="submit"]');
+
             const btnText = document.getElementById('btnText');
+
             const loader = document.getElementById('btnLoader');
+
             const successMsg = document.getElementById('successMessage');
+
             const errorMsg = document.getElementById('errorMessage');
 
+
+
             // UI Loading State
+
             btn.disabled = true;
+
             btnText.innerText = "TRANSMITTING...";
+
             loader.style.display = "inline-block";
+
             successMsg.style.display = "none";
+
             errorMsg.style.display = "none";
+
+
 
             const formData = new FormData(this);
 
+
+
             // Send to Public API
+
             fetch('public_api.php', {
+
                 method: 'POST',
+
                 body: formData
+
             })
+
             .then(res => res.json())
+
             .then(data => {
+
                 if(data.status === 'success') {
+
                     successMsg.style.display = "block";
+
                     this.reset();
+
                     // Optional: Close modal after 2 seconds
+
                     setTimeout(() => {
+
                         bootstrap.Modal.getInstance(document.getElementById('waitlistModal')).hide();
+
                         successMsg.style.display = "none";
+
                         btnText.innerText = "REQUEST ACCESS >>";
+
                         btn.disabled = false;
+
                         loader.style.display = "none";
+
                     }, 3000);
+
                 } else {
+
                     errorMsg.innerText = "ERROR: " + data.message;
+
                     errorMsg.style.display = "block";
+
                     btn.disabled = false;
+
                     btnText.innerText = "TRY AGAIN";
+
                     loader.style.display = "none";
+
                 }
+
             })
+
             .catch(err => {
+
                 console.error(err);
+
                 errorMsg.innerText = "CONNECTION FAILED.";
+
                 errorMsg.style.display = "block";
+
                 btn.disabled = false;
+
                 btnText.innerText = "TRY AGAIN";
+
                 loader.style.display = "none";
+
             });
+
         });
+
     </script>
+
 </body>
+
 </html>
