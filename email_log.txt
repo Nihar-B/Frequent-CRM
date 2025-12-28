@@ -1,0 +1,20 @@
+To: admin@crm.com
+Subject: Password Reset
+Link: http://localhost/crm_pro/reset_password.php?token=cb8292154c45e8f3c9d18a106cf78c8c
+
+To: admin@crm.com
+Subject: Password Reset
+Link: http://localhost/crm_pro/reset_password.php?token=03b7a17ebf170cd2737f3d84686583a7
+
+To: admin@crm.com
+Subject: Password Reset
+Link: http://localhost:8080/crm_pro/reset_password.php?token=b0f0fdbc5cc234be352114e59356f33d
+
+To: admin@crm.com
+Subject: Password Reset
+Link: http://localhost:8080/crm_pro/reset_password.php?token=8902309b9c9f924f9c29001ad32224be
+
+To: admin@crm.com
+Subject: Password Reset
+Link: http://localhost:8080/crm_pro/reset_password.php?token=ee5b20d94d097cdb845f7802f355cd2d
+

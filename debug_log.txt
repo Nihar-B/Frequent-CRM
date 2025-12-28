@@ -1,0 +1,862 @@
+[2025-12-27 14:54:10] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 14:54:10] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 14:54:12] Action: get_dashboard_stats | User: 1 | Role: admin
+[2025-12-27 14:54:12] getStats Query WHERE: 
+[2025-12-27 14:54:12] Customers Count: 2
+[2025-12-27 14:54:12] Revenue Sum: 123456.00
+[2025-12-27 14:54:12] Action: get_customers | User: 1 | Role: admin
+[2025-12-27 14:54:12] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 14:54:12] Action: get_products | User: 1 | Role: admin
+[2025-12-27 14:54:12] Action: get_users | User: 1 | Role: admin
+[2025-12-27 14:54:12] Action: get_tasks | User: 1 | Role: admin
+[2025-12-27 14:54:12] Action: get_chart_data | User: 1 | Role: admin
+[2025-12-27 14:54:12] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 14:54:12] Action: get_customers | User: 1 | Role: admin
+[2025-12-27 14:54:12] Action: get_users | User: 1 | Role: admin
+[2025-12-27 14:54:17] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 14:54:17] Action: get_dashboard_stats | User: 1 | Role: admin
+[2025-12-27 14:54:17] getStats Query WHERE: 
+[2025-12-27 14:54:17] Customers Count: 2
+[2025-12-27 14:54:17] Revenue Sum: 123456.00
+[2025-12-27 14:54:22] Action: get_dashboard_stats | User: 1 | Role: admin
+[2025-12-27 14:54:22] getStats Query WHERE: 
+[2025-12-27 14:54:22] Customers Count: 2
+[2025-12-27 14:54:22] Revenue Sum: 123456.00
+[2025-12-27 14:54:22] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 14:54:23] Action: get_notifications | User: 2 | Role: sales_rep
+[2025-12-27 14:54:23] Action: get_deals | User: 2 | Role: sales_rep
+[2025-12-27 14:54:27] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 14:54:27] Action: get_dashboard_stats | User: 1 | Role: admin
+[2025-12-27 14:54:27] getStats Query WHERE: 
+[2025-12-27 14:54:27] Customers Count: 2
+[2025-12-27 14:54:27] Revenue Sum: 123456.00
+[2025-12-27 14:54:32] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 14:54:32] Action: get_dashboard_stats | User: 1 | Role: admin
+[2025-12-27 14:54:32] getStats Query WHERE: 
+[2025-12-27 14:54:32] Customers Count: 2
+[2025-12-27 14:54:32] Revenue Sum: 123456.00
+[2025-12-27 14:54:34] Action: get_deal | User: 1 | Role: admin
+[2025-12-27 14:54:37] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 14:54:37] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 14:54:42] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 14:54:42] Action: get_tasks | User: 1 | Role: admin
+[2025-12-27 14:54:46] Action: get_customer_360 | User: 1 | Role: admin
+[2025-12-27 14:54:47] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 14:54:47] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 14:54:47] Action: get_customer_360 | User: 1 | Role: admin
+[2025-12-27 14:54:48] Action: get_customer_360 | User: 1 | Role: admin
+[2025-12-27 14:54:48] Action: get_customer_360 | User: 1 | Role: admin
+[2025-12-27 14:54:48] Action: get_customer_360 | User: 1 | Role: admin
+[2025-12-27 14:54:50] Action: get_customer_360 | User: 1 | Role: admin
+[2025-12-27 14:54:50] Action: get_customer_360 | User: 1 | Role: admin
+[2025-12-27 14:54:50] Action: get_customer_360 | User: 1 | Role: admin
+[2025-12-27 14:54:50] Action: get_customer_360 | User: 1 | Role: admin
+[2025-12-27 14:54:50] Action: get_customer_360 | User: 1 | Role: admin
+[2025-12-27 14:54:51] Action: get_customer_360 | User: 1 | Role: admin
+[2025-12-27 14:54:51] Action: get_customer_360 | User: 1 | Role: admin
+[2025-12-27 14:54:52] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 14:54:52] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 14:54:57] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 14:54:57] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 14:55:02] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 14:55:02] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 14:55:07] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 14:55:07] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 14:55:12] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 14:55:12] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 14:55:17] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 14:55:17] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 14:55:22] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 14:55:22] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 14:55:23] Action: get_notifications | User: 2 | Role: sales_rep
+[2025-12-27 14:55:23] Action: get_deals | User: 2 | Role: sales_rep
+[2025-12-27 14:55:27] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 14:55:27] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 14:55:32] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 14:55:32] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 14:55:37] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 14:55:37] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 14:55:42] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 14:55:42] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 14:56:23] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 14:56:23] Action: get_notifications | User: 2 | Role: sales_rep
+[2025-12-27 14:56:23] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 14:56:23] Action: get_deals | User: 2 | Role: sales_rep
+[2025-12-27 14:57:23] Action: get_notifications | User: 2 | Role: sales_rep
+[2025-12-27 14:57:23] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 14:57:23] Action: get_deals | User: 2 | Role: sales_rep
+[2025-12-27 14:57:23] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 14:58:23] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 14:58:23] Action: get_notifications | User: 2 | Role: sales_rep
+[2025-12-27 14:58:23] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 14:58:23] Action: get_deals | User: 2 | Role: sales_rep
+[2025-12-27 14:59:23] Action: get_notifications | User: 2 | Role: sales_rep
+[2025-12-27 14:59:23] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 14:59:23] Action: get_deals | User: 2 | Role: sales_rep
+[2025-12-27 14:59:23] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:00:23] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:00:23] Action: get_notifications | User: 2 | Role: sales_rep
+[2025-12-27 15:00:23] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:00:23] Action: get_deals | User: 2 | Role: sales_rep
+[2025-12-27 15:01:23] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:01:23] Action: get_notifications | User: 2 | Role: sales_rep
+[2025-12-27 15:01:23] Action: get_deals | User: 2 | Role: sales_rep
+[2025-12-27 15:01:23] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:02:23] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:02:23] Action: get_notifications | User: 2 | Role: sales_rep
+[2025-12-27 15:02:23] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:02:23] Action: get_deals | User: 2 | Role: sales_rep
+[2025-12-27 15:03:19] Action: get_customers | User: 1 | Role: admin
+[2025-12-27 15:03:19] Action: get_dashboard_stats | User: 1 | Role: admin
+[2025-12-27 15:03:19] getStats Query WHERE: 
+[2025-12-27 15:03:19] Customers Count: 2
+[2025-12-27 15:03:19] Revenue Sum: 123456.00
+[2025-12-27 15:03:19] Action: get_products | User: 1 | Role: admin
+[2025-12-27 15:03:19] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:03:19] Action: get_tasks | User: 1 | Role: admin
+[2025-12-27 15:03:19] Action: get_users | User: 1 | Role: admin
+[2025-12-27 15:03:19] Action: get_chart_data | User: 1 | Role: admin
+[2025-12-27 15:03:19] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:03:20] Action: get_customers | User: 1 | Role: admin
+[2025-12-27 15:03:20] Action: get_users | User: 1 | Role: admin
+[2025-12-27 15:03:21] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:03:21] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:03:22] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:03:22] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:03:23] Action: get_notifications | User: 2 | Role: sales_rep
+[2025-12-27 15:03:23] Action: get_deals | User: 2 | Role: sales_rep
+[2025-12-27 15:03:24] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:03:25] Action: get_customer_360 | User: 1 | Role: admin
+[2025-12-27 15:03:27] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:03:27] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:03:27] Action: get_customer_360 | User: 1 | Role: admin
+[2025-12-27 15:03:27] Action: get_customer_360 | User: 1 | Role: admin
+[2025-12-27 15:03:29] Action: get_customer_360 | User: 1 | Role: admin
+[2025-12-27 15:03:32] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:03:32] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:03:37] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:03:37] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:03:42] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:03:42] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:03:47] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:03:47] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:03:52] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:03:52] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:03:57] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:03:57] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:04:02] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:04:02] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:04:07] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:04:07] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:04:12] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:04:12] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:04:17] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:04:17] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:04:22] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:04:22] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:04:23] Action: get_notifications | User: 2 | Role: sales_rep
+[2025-12-27 15:04:23] Action: get_deals | User: 2 | Role: sales_rep
+[2025-12-27 15:04:27] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:04:27] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:04:32] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:04:32] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:04:37] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:04:37] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:04:42] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:04:42] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:04:47] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:04:47] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:05:23] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:05:23] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:05:23] Action: get_notifications | User: 2 | Role: sales_rep
+[2025-12-27 15:05:23] Action: get_deals | User: 2 | Role: sales_rep
+[2025-12-27 15:06:23] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:06:23] Action: get_notifications | User: 2 | Role: sales_rep
+[2025-12-27 15:06:23] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:06:23] Action: get_deals | User: 2 | Role: sales_rep
+[2025-12-27 15:07:23] Action: get_notifications | User: 2 | Role: sales_rep
+[2025-12-27 15:07:23] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:07:23] Action: get_deals | User: 2 | Role: sales_rep
+[2025-12-27 15:07:23] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:07:27] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:07:27] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:07:27] Action: get_customer_360 | User: 1 | Role: admin
+[2025-12-27 15:07:28] Action: get_customer_360 | User: 1 | Role: admin
+[2025-12-27 15:07:28] Action: get_customer_360 | User: 1 | Role: admin
+[2025-12-27 15:07:28] Action: get_customer_360 | User: 1 | Role: admin
+[2025-12-27 15:07:32] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:07:32] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:07:37] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:07:37] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:07:42] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:07:42] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:07:47] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:07:47] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:07:52] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:07:52] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:07:57] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:07:57] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:08:02] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:08:02] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:08:07] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:08:07] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:08:12] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:08:12] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:08:17] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:08:17] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:08:22] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:08:22] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:08:23] Action: get_notifications | User: 2 | Role: sales_rep
+[2025-12-27 15:08:23] Action: get_deals | User: 2 | Role: sales_rep
+[2025-12-27 15:08:27] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:08:27] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:08:32] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:08:32] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:08:37] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:08:37] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:08:42] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:08:42] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:08:47] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:08:47] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:08:52] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:08:52] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:08:57] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:08:57] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:09:02] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:09:02] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:09:23] Action: get_notifications | User: 2 | Role: sales_rep
+[2025-12-27 15:09:23] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:09:23] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:09:23] Action: get_deals | User: 2 | Role: sales_rep
+[2025-12-27 15:10:23] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:10:23] Action: get_notifications | User: 2 | Role: sales_rep
+[2025-12-27 15:10:23] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:10:23] Action: get_deals | User: 2 | Role: sales_rep
+[2025-12-27 15:10:39] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:10:39] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:10:40] Action: get_customer_360 | User: 1 | Role: admin
+[2025-12-27 15:10:42] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:10:42] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:10:47] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:10:47] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:10:52] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:10:52] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:10:57] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:10:57] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:11:02] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:11:02] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:11:07] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:11:07] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:11:12] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:11:12] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:11:17] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:11:17] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:11:22] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:11:22] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:11:23] Action: get_notifications | User: 2 | Role: sales_rep
+[2025-12-27 15:11:23] Action: get_deals | User: 2 | Role: sales_rep
+[2025-12-27 15:11:27] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:11:27] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:11:32] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:11:32] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:11:37] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:11:37] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:12:23] Action: get_notifications | User: 2 | Role: sales_rep
+[2025-12-27 15:12:23] Action: get_deals | User: 2 | Role: sales_rep
+[2025-12-27 15:12:23] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:12:23] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:12:40] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:12:40] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:12:42] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:12:42] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:12:44] Action: update_deal_stage | User: 1 | Role: admin
+[2025-12-27 15:12:44] Action: get_dashboard_stats | User: 1 | Role: admin
+[2025-12-27 15:12:44] getStats Query WHERE: 
+[2025-12-27 15:12:44] Customers Count: 2
+[2025-12-27 15:12:44] Revenue Sum: 1357868.00
+[2025-12-27 15:12:45] Action: update_deal_stage | User: 1 | Role: admin
+[2025-12-27 15:12:45] Action: get_dashboard_stats | User: 1 | Role: admin
+[2025-12-27 15:12:45] getStats Query WHERE: 
+[2025-12-27 15:12:45] Customers Count: 2
+[2025-12-27 15:12:45] Revenue Sum: 1358991.00
+[2025-12-27 15:12:46] Action: update_deal_stage | User: 1 | Role: admin
+[2025-12-27 15:12:46] Action: get_dashboard_stats | User: 1 | Role: admin
+[2025-12-27 15:12:46] getStats Query WHERE: 
+[2025-12-27 15:12:46] Customers Count: 2
+[2025-12-27 15:12:46] Revenue Sum: 101358982.00
+[2025-12-27 15:12:47] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:12:47] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:12:48] Action: update_deal_stage | User: 1 | Role: admin
+[2025-12-27 15:12:48] Action: get_dashboard_stats | User: 1 | Role: admin
+[2025-12-27 15:12:48] getStats Query WHERE: 
+[2025-12-27 15:12:48] Customers Count: 2
+[2025-12-27 15:12:48] Revenue Sum: 101358982.00
+[2025-12-27 15:12:50] Action: update_deal_stage | User: 1 | Role: admin
+[2025-12-27 15:12:50] Action: get_dashboard_stats | User: 1 | Role: admin
+[2025-12-27 15:12:50] getStats Query WHERE: 
+[2025-12-27 15:12:50] Customers Count: 2
+[2025-12-27 15:12:50] Revenue Sum: 101359105.00
+[2025-12-27 15:12:51] Action: update_deal_stage | User: 1 | Role: admin
+[2025-12-27 15:12:51] Action: get_dashboard_stats | User: 1 | Role: admin
+[2025-12-27 15:12:51] getStats Query WHERE: 
+[2025-12-27 15:12:51] Customers Count: 2
+[2025-12-27 15:12:51] Revenue Sum: 101359228.00
+[2025-12-27 15:12:52] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:12:52] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:12:54] Action: get_customer_360 | User: 1 | Role: admin
+[2025-12-27 15:12:55] Action: get_customer_360 | User: 1 | Role: admin
+[2025-12-27 15:12:57] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:12:57] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:13:02] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:13:02] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:13:07] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:13:07] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:13:12] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:13:12] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:13:17] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:13:17] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:13:22] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:13:22] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:13:23] Action: get_notifications | User: 2 | Role: sales_rep
+[2025-12-27 15:13:23] Action: get_deals | User: 2 | Role: sales_rep
+[2025-12-27 15:13:27] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:13:27] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:13:32] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:13:32] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:13:37] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:13:37] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:13:42] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:13:42] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:13:47] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:13:47] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:13:52] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:13:52] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:13:57] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:13:57] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:14:02] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:14:02] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:14:07] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:14:07] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:14:12] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:14:12] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:14:17] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:14:17] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:14:23] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:14:23] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:14:23] Action: get_notifications | User: 2 | Role: sales_rep
+[2025-12-27 15:14:23] Action: get_deals | User: 2 | Role: sales_rep
+[2025-12-27 15:15:23] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:15:23] Action: get_notifications | User: 2 | Role: sales_rep
+[2025-12-27 15:15:23] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:15:23] Action: get_deals | User: 2 | Role: sales_rep
+[2025-12-27 15:16:23] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:16:23] Action: get_notifications | User: 2 | Role: sales_rep
+[2025-12-27 15:16:23] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:16:23] Action: get_deals | User: 2 | Role: sales_rep
+[2025-12-27 15:17:09] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:17:09] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:17:12] Action: update_deal_stage | User: 1 | Role: admin
+[2025-12-27 15:17:12] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:17:12] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:17:12] Action: get_dashboard_stats | User: 1 | Role: admin
+[2025-12-27 15:17:12] getStats Query WHERE: 
+[2025-12-27 15:17:12] Customers Count: 2
+[2025-12-27 15:17:12] Revenue Sum: 101235772.00
+[2025-12-27 15:17:12] Action: update_deal_stage | User: 1 | Role: admin
+[2025-12-27 15:17:12] Action: get_dashboard_stats | User: 1 | Role: admin
+[2025-12-27 15:17:12] getStats Query WHERE: 
+[2025-12-27 15:17:12] Customers Count: 2
+[2025-12-27 15:17:12] Revenue Sum: 101235649.00
+[2025-12-27 15:17:13] Action: update_deal_stage | User: 1 | Role: admin
+[2025-12-27 15:17:13] Action: get_dashboard_stats | User: 1 | Role: admin
+[2025-12-27 15:17:13] getStats Query WHERE: 
+[2025-12-27 15:17:13] Customers Count: 2
+[2025-12-27 15:17:13] Revenue Sum: 100001237.00
+[2025-12-27 15:17:14] Action: update_deal_stage | User: 1 | Role: admin
+[2025-12-27 15:17:14] Action: get_dashboard_stats | User: 1 | Role: admin
+[2025-12-27 15:17:14] getStats Query WHERE: 
+[2025-12-27 15:17:14] Customers Count: 2
+[2025-12-27 15:17:14] Revenue Sum: 100001114.00
+[2025-12-27 15:17:17] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:17:17] Action: get_products | User: 1 | Role: admin
+[2025-12-27 15:17:17] Action: get_dashboard_stats | User: 1 | Role: admin
+[2025-12-27 15:17:17] getStats Query WHERE: 
+[2025-12-27 15:17:17] Customers Count: 2
+[2025-12-27 15:17:17] Revenue Sum: 100001114.00
+[2025-12-27 15:17:17] Action: get_customers | User: 1 | Role: admin
+[2025-12-27 15:17:17] Action: get_products | User: 1 | Role: admin
+[2025-12-27 15:17:17] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:17:17] Action: get_tasks | User: 1 | Role: admin
+[2025-12-27 15:17:17] Action: get_users | User: 1 | Role: admin
+[2025-12-27 15:17:17] Action: get_chart_data | User: 1 | Role: admin
+[2025-12-27 15:17:17] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:17:17] Action: get_customers | User: 1 | Role: admin
+[2025-12-27 15:17:17] Action: get_users | User: 1 | Role: admin
+[2025-12-27 15:17:22] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:17:22] Action: get_products | User: 1 | Role: admin
+[2025-12-27 15:17:23] Action: get_notifications | User: 2 | Role: sales_rep
+[2025-12-27 15:17:23] Action: get_deals | User: 2 | Role: sales_rep
+[2025-12-27 15:17:27] Action: get_products | User: 1 | Role: admin
+[2025-12-27 15:17:27] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:17:33] Action: get_products | User: 1 | Role: admin
+[2025-12-27 15:17:33] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:17:37] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:17:37] Action: get_products | User: 1 | Role: admin
+[2025-12-27 15:17:42] Action: get_products | User: 1 | Role: admin
+[2025-12-27 15:17:42] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:17:45] Action: add_product | User: 1 | Role: admin
+[2025-12-27 15:17:45] Action: get_products | User: 1 | Role: admin
+[2025-12-27 15:17:47] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:17:47] Action: get_products | User: 1 | Role: admin
+[2025-12-27 15:17:52] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:17:52] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:17:57] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:17:57] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:18:02] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:18:02] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:18:07] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:18:07] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:18:12] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:18:12] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:18:17] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:18:17] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:18:22] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:18:22] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:18:23] Action: get_notifications | User: 2 | Role: sales_rep
+[2025-12-27 15:18:23] Action: get_deals | User: 2 | Role: sales_rep
+[2025-12-27 15:18:27] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:18:27] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:18:32] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:18:32] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:18:33] Action: add_deal | User: 1 | Role: admin
+[2025-12-27 15:18:33] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:18:38] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:18:38] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:18:43] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:18:43] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:18:47] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:18:47] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:18:49] Action: get_customer_360 | User: 1 | Role: admin
+[2025-12-27 15:18:50] Action: get_customer_360 | User: 1 | Role: admin
+[2025-12-27 15:18:52] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:18:52] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:18:53] Action: get_deal | User: 1 | Role: admin
+[2025-12-27 15:18:57] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:18:57] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:19:02] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:19:02] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:19:07] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:19:07] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:19:12] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:19:12] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:19:17] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:19:17] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:19:20] Action: add_deal | User: 1 | Role: admin
+[2025-12-27 15:19:20] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:19:22] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:19:22] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:19:23] Action: get_notifications | User: 2 | Role: sales_rep
+[2025-12-27 15:19:23] Action: get_deals | User: 2 | Role: sales_rep
+[2025-12-27 15:19:23] Action: get_customer_360 | User: 1 | Role: admin
+[2025-12-27 15:19:24] Action: get_customer_360 | User: 1 | Role: admin
+[2025-12-27 15:19:24] Action: get_customer_360 | User: 1 | Role: admin
+[2025-12-27 15:19:27] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:19:27] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:19:32] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:19:32] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:19:37] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:19:37] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:19:38] Action: update_deal_stage | User: 1 | Role: admin
+[2025-12-27 15:19:38] Action: get_dashboard_stats | User: 1 | Role: admin
+[2025-12-27 15:19:38] getStats Query WHERE: 
+[2025-12-27 15:19:38] Customers Count: 2
+[2025-12-27 15:19:38] Revenue Sum: 100002114.00
+[2025-12-27 15:19:40] Action: get_customer_360 | User: 1 | Role: admin
+[2025-12-27 15:19:43] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:19:43] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:19:48] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:19:48] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:19:53] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:19:53] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:19:58] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:19:58] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:20:03] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:20:03] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:20:08] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:20:08] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:20:13] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:20:13] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:20:18] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:20:18] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:20:23] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:20:23] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:20:23] Action: get_notifications | User: 2 | Role: sales_rep
+[2025-12-27 15:20:23] Action: get_deals | User: 2 | Role: sales_rep
+[2025-12-27 15:20:28] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:20:28] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:20:33] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:20:33] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:20:38] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:20:38] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:21:23] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:21:23] Action: get_notifications | User: 2 | Role: sales_rep
+[2025-12-27 15:21:23] Action: get_deals | User: 2 | Role: sales_rep
+[2025-12-27 15:21:23] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:22:23] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:22:23] Action: get_deals | User: 2 | Role: sales_rep
+[2025-12-27 15:22:23] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:22:23] Action: get_notifications | User: 2 | Role: sales_rep
+[2025-12-27 15:22:34] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:22:34] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:22:38] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:22:38] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:22:43] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:22:43] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:22:48] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:22:48] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:22:53] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:22:53] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:22:58] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:22:58] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:23:03] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:23:03] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:23:08] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:23:08] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:23:13] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:23:13] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:23:18] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:23:18] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:23:23] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:23:23] Action: get_notifications | User: 2 | Role: sales_rep
+[2025-12-27 15:23:23] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:23:23] Action: get_deals | User: 2 | Role: sales_rep
+[2025-12-27 15:23:28] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:23:28] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:23:33] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:23:33] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:24:23] Action: get_notifications | User: 2 | Role: sales_rep
+[2025-12-27 15:24:23] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:24:23] Action: get_deals | User: 2 | Role: sales_rep
+[2025-12-27 15:24:23] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:25:23] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:25:23] Action: get_notifications | User: 2 | Role: sales_rep
+[2025-12-27 15:25:23] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:25:23] Action: get_deals | User: 2 | Role: sales_rep
+[2025-12-27 15:26:16] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:26:16] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:26:18] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:26:18] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:26:23] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:26:23] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:26:23] Action: get_notifications | User: 2 | Role: sales_rep
+[2025-12-27 15:26:23] Action: get_deals | User: 2 | Role: sales_rep
+[2025-12-27 15:26:28] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:26:28] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:26:33] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:26:33] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:26:38] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:26:38] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:26:43] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:26:43] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:26:48] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:26:48] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:26:53] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:26:53] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:26:58] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:26:58] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:27:03] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:27:03] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:27:08] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:27:08] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:27:13] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:27:13] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:27:23] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:27:23] Action: get_notifications | User: 2 | Role: sales_rep
+[2025-12-27 15:27:23] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:27:23] Action: get_deals | User: 2 | Role: sales_rep
+[2025-12-27 15:28:23] Action: get_notifications | User: 2 | Role: sales_rep
+[2025-12-27 15:28:23] Action: get_deals | User: 2 | Role: sales_rep
+[2025-12-27 15:28:23] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:28:23] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:29:23] Action: get_notifications | User: 2 | Role: sales_rep
+[2025-12-27 15:29:23] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:29:23] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:29:23] Action: get_deals | User: 2 | Role: sales_rep
+[2025-12-27 15:29:41] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:29:41] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:29:42] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:29:42] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:29:42] Action: get_dashboard_stats | User: 1 | Role: admin
+[2025-12-27 15:29:42] getStats Query WHERE: 
+[2025-12-27 15:29:42] Customers Count: 2
+[2025-12-27 15:29:42] Revenue Sum: 100002114.00
+[2025-12-27 15:29:42] Action: get_customers | User: 1 | Role: admin
+[2025-12-27 15:29:42] Action: get_products | User: 1 | Role: admin
+[2025-12-27 15:29:42] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:29:42] Action: get_tasks | User: 1 | Role: admin
+[2025-12-27 15:29:42] Action: get_users | User: 1 | Role: admin
+[2025-12-27 15:29:42] Action: get_chart_data | User: 1 | Role: admin
+[2025-12-27 15:29:42] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:29:42] Action: get_customers | User: 1 | Role: admin
+[2025-12-27 15:29:42] Action: get_users | User: 1 | Role: admin
+[2025-12-27 15:29:48] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:29:48] Action: get_dashboard_stats | User: 1 | Role: admin
+[2025-12-27 15:29:48] getStats Query WHERE: 
+[2025-12-27 15:29:48] Customers Count: 2
+[2025-12-27 15:29:48] Revenue Sum: 100002114.00
+[2025-12-27 15:29:53] Action: get_dashboard_stats | User: 1 | Role: admin
+[2025-12-27 15:29:53] getStats Query WHERE: 
+[2025-12-27 15:29:53] Customers Count: 2
+[2025-12-27 15:29:53] Revenue Sum: 100002114.00
+[2025-12-27 15:29:53] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:29:58] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:29:58] Action: get_dashboard_stats | User: 1 | Role: admin
+[2025-12-27 15:29:58] getStats Query WHERE: 
+[2025-12-27 15:29:58] Customers Count: 2
+[2025-12-27 15:29:58] Revenue Sum: 100002114.00
+[2025-12-27 15:30:04] Action: get_dashboard_stats | User: 1 | Role: admin
+[2025-12-27 15:30:04] getStats Query WHERE: 
+[2025-12-27 15:30:04] Customers Count: 2
+[2025-12-27 15:30:04] Revenue Sum: 100002114.00
+[2025-12-27 15:30:04] Action: get_users | User: 1 | Role: admin
+[2025-12-27 15:30:05] Action: get_deals | User: 1 | Role: admin
+[2025-12-27 15:30:05] Action: get_tasks | User: 1 | Role: admin
+[2025-12-27 15:30:05] Action: get_customers | User: 1 | Role: admin
+[2025-12-27 15:30:05] Action: get_products | User: 1 | Role: admin
+[2025-12-27 15:30:05] Action: get_chart_data | User: 1 | Role: admin
+[2025-12-27 15:30:05] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:30:05] Action: get_users | User: 1 | Role: admin
+[2025-12-27 15:30:05] Action: get_customers | User: 1 | Role: admin
+[2025-12-27 15:30:10] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:30:10] Action: get_dashboard_stats | User: 1 | Role: admin
+[2025-12-27 15:30:10] getStats Query WHERE: 
+[2025-12-27 15:30:10] Customers Count: 2
+[2025-12-27 15:30:10] Revenue Sum: 100002114.00
+[2025-12-27 15:30:15] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:30:15] Action: get_dashboard_stats | User: 1 | Role: admin
+[2025-12-27 15:30:15] getStats Query WHERE: 
+[2025-12-27 15:30:15] Customers Count: 2
+[2025-12-27 15:30:15] Revenue Sum: 100002114.00
+[2025-12-27 15:30:20] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:30:20] Action: get_dashboard_stats | User: 1 | Role: admin
+[2025-12-27 15:30:20] getStats Query WHERE: 
+[2025-12-27 15:30:20] Customers Count: 2
+[2025-12-27 15:30:20] Revenue Sum: 100002114.00
+[2025-12-27 15:30:23] Action: get_deals | User: 2 | Role: sales_rep
+[2025-12-27 15:30:23] Action: get_notifications | User: 2 | Role: sales_rep
+[2025-12-27 15:30:25] Action: get_dashboard_stats | User: 1 | Role: admin
+[2025-12-27 15:30:25] getStats Query WHERE: 
+[2025-12-27 15:30:25] Customers Count: 2
+[2025-12-27 15:30:25] Revenue Sum: 100002114.00
+[2025-12-27 15:30:25] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:30:30] Action: get_dashboard_stats | User: 1 | Role: admin
+[2025-12-27 15:30:30] getStats Query WHERE: 
+[2025-12-27 15:30:30] Customers Count: 2
+[2025-12-27 15:30:30] Revenue Sum: 100002114.00
+[2025-12-27 15:30:30] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:30:35] Action: get_dashboard_stats | User: 1 | Role: admin
+[2025-12-27 15:30:35] getStats Query WHERE: 
+[2025-12-27 15:30:35] Customers Count: 2
+[2025-12-27 15:30:35] Revenue Sum: 100002114.00
+[2025-12-27 15:30:35] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:30:40] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:30:40] Action: get_dashboard_stats | User: 1 | Role: admin
+[2025-12-27 15:30:40] getStats Query WHERE: 
+[2025-12-27 15:30:40] Customers Count: 2
+[2025-12-27 15:30:40] Revenue Sum: 100002114.00
+[2025-12-27 15:30:45] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:30:45] Action: get_dashboard_stats | User: 1 | Role: admin
+[2025-12-27 15:30:45] getStats Query WHERE: 
+[2025-12-27 15:30:45] Customers Count: 2
+[2025-12-27 15:30:45] Revenue Sum: 100002114.00
+[2025-12-27 15:30:50] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:30:50] Action: get_dashboard_stats | User: 1 | Role: admin
+[2025-12-27 15:30:50] getStats Query WHERE: 
+[2025-12-27 15:30:50] Customers Count: 2
+[2025-12-27 15:30:50] Revenue Sum: 100002114.00
+[2025-12-27 15:30:55] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:30:55] Action: get_dashboard_stats | User: 1 | Role: admin
+[2025-12-27 15:30:55] getStats Query WHERE: 
+[2025-12-27 15:30:55] Customers Count: 2
+[2025-12-27 15:30:55] Revenue Sum: 100002114.00
+[2025-12-27 15:31:00] Action: get_dashboard_stats | User: 1 | Role: admin
+[2025-12-27 15:31:00] getStats Query WHERE: 
+[2025-12-27 15:31:00] Customers Count: 2
+[2025-12-27 15:31:00] Revenue Sum: 100002114.00
+[2025-12-27 15:31:00] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:31:05] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:31:05] Action: get_dashboard_stats | User: 1 | Role: admin
+[2025-12-27 15:31:05] getStats Query WHERE: 
+[2025-12-27 15:31:05] Customers Count: 2
+[2025-12-27 15:31:05] Revenue Sum: 100002114.00
+[2025-12-27 15:31:10] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:31:10] Action: get_dashboard_stats | User: 1 | Role: admin
+[2025-12-27 15:31:10] getStats Query WHERE: 
+[2025-12-27 15:31:10] Customers Count: 2
+[2025-12-27 15:31:10] Revenue Sum: 100002114.00
+[2025-12-27 15:31:15] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:31:15] Action: get_dashboard_stats | User: 1 | Role: admin
+[2025-12-27 15:31:15] getStats Query WHERE: 
+[2025-12-27 15:31:15] Customers Count: 2
+[2025-12-27 15:31:15] Revenue Sum: 100002114.00
+[2025-12-27 15:31:20] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:31:20] Action: get_dashboard_stats | User: 1 | Role: admin
+[2025-12-27 15:31:20] getStats Query WHERE: 
+[2025-12-27 15:31:20] Customers Count: 2
+[2025-12-27 15:31:20] Revenue Sum: 100002114.00
+[2025-12-27 15:31:23] Action: get_notifications | User: 2 | Role: sales_rep
+[2025-12-27 15:31:23] Action: get_deals | User: 2 | Role: sales_rep
+[2025-12-27 15:31:25] Action: get_dashboard_stats | User: 1 | Role: admin
+[2025-12-27 15:31:25] getStats Query WHERE: 
+[2025-12-27 15:31:25] Customers Count: 2
+[2025-12-27 15:31:25] Revenue Sum: 100002114.00
+[2025-12-27 15:31:25] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:31:30] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:31:30] Action: get_dashboard_stats | User: 1 | Role: admin
+[2025-12-27 15:31:30] getStats Query WHERE: 
+[2025-12-27 15:31:30] Customers Count: 2
+[2025-12-27 15:31:30] Revenue Sum: 100002114.00
+[2025-12-27 15:31:35] Action: get_dashboard_stats | User: 1 | Role: admin
+[2025-12-27 15:31:35] getStats Query WHERE: 
+[2025-12-27 15:31:35] Customers Count: 2
+[2025-12-27 15:31:35] Revenue Sum: 100002114.00
+[2025-12-27 15:31:35] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:31:40] Action: get_dashboard_stats | User: 1 | Role: admin
+[2025-12-27 15:31:40] getStats Query WHERE: 
+[2025-12-27 15:31:40] Customers Count: 2
+[2025-12-27 15:31:40] Revenue Sum: 100002114.00
+[2025-12-27 15:31:40] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:31:45] Action: get_dashboard_stats | User: 1 | Role: admin
+[2025-12-27 15:31:45] getStats Query WHERE: 
+[2025-12-27 15:31:45] Customers Count: 2
+[2025-12-27 15:31:45] Revenue Sum: 100002114.00
+[2025-12-27 15:31:45] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:31:50] Action: get_dashboard_stats | User: 1 | Role: admin
+[2025-12-27 15:31:50] getStats Query WHERE: 
+[2025-12-27 15:31:50] Customers Count: 2
+[2025-12-27 15:31:50] Revenue Sum: 100002114.00
+[2025-12-27 15:31:50] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:31:55] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:31:55] Action: get_dashboard_stats | User: 1 | Role: admin
+[2025-12-27 15:31:55] getStats Query WHERE: 
+[2025-12-27 15:31:55] Customers Count: 2
+[2025-12-27 15:31:55] Revenue Sum: 100002114.00
+[2025-12-27 15:32:00] Action: get_dashboard_stats | User: 1 | Role: admin
+[2025-12-27 15:32:00] getStats Query WHERE: 
+[2025-12-27 15:32:00] Customers Count: 2
+[2025-12-27 15:32:00] Revenue Sum: 100002114.00
+[2025-12-27 15:32:00] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:32:05] Action: get_dashboard_stats | User: 1 | Role: admin
+[2025-12-27 15:32:05] getStats Query WHERE: 
+[2025-12-27 15:32:05] Customers Count: 2
+[2025-12-27 15:32:05] Revenue Sum: 100002114.00
+[2025-12-27 15:32:05] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:32:10] Action: get_dashboard_stats | User: 1 | Role: admin
+[2025-12-27 15:32:10] getStats Query WHERE: 
+[2025-12-27 15:32:10] Customers Count: 2
+[2025-12-27 15:32:10] Revenue Sum: 100002114.00
+[2025-12-27 15:32:10] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:32:14] Action: get_dashboard_stats | User: 1 | Role: admin
+[2025-12-27 15:32:14] getStats Query WHERE: 
+[2025-12-27 15:32:14] Customers Count: 2
+[2025-12-27 15:32:15] Revenue Sum: 100002114.00
+[2025-12-27 15:32:15] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:32:20] Action: get_dashboard_stats | User: 1 | Role: admin
+[2025-12-27 15:32:20] getStats Query WHERE: 
+[2025-12-27 15:32:20] Customers Count: 2
+[2025-12-27 15:32:20] Revenue Sum: 100002114.00
+[2025-12-27 15:32:20] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:32:21] Action: get_email_templates | User: 1 | Role: admin
+[2025-12-27 15:32:21] Action: get_customer_360 | User: 1 | Role: admin
+[2025-12-27 15:32:23] Action: get_deals | User: 2 | Role: sales_rep
+[2025-12-27 15:32:23] Action: get_notifications | User: 2 | Role: sales_rep
+[2025-12-27 15:32:25] Action: get_dashboard_stats | User: 1 | Role: admin
+[2025-12-27 15:32:25] getStats Query WHERE: 
+[2025-12-27 15:32:25] Customers Count: 2
+[2025-12-27 15:32:25] Revenue Sum: 100002114.00
+[2025-12-27 15:32:25] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:32:30] Action: get_dashboard_stats | User: 1 | Role: admin
+[2025-12-27 15:32:30] getStats Query WHERE: 
+[2025-12-27 15:32:30] Customers Count: 2
+[2025-12-27 15:32:30] Revenue Sum: 100002114.00
+[2025-12-27 15:32:30] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:32:35] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:32:35] Action: get_dashboard_stats | User: 1 | Role: admin
+[2025-12-27 15:32:35] getStats Query WHERE: 
+[2025-12-27 15:32:35] Customers Count: 2
+[2025-12-27 15:32:35] Revenue Sum: 100002114.00
+[2025-12-27 15:32:40] Action: get_dashboard_stats | User: 1 | Role: admin
+[2025-12-27 15:32:40] getStats Query WHERE: 
+[2025-12-27 15:32:40] Customers Count: 2
+[2025-12-27 15:32:40] Revenue Sum: 100002114.00
+[2025-12-27 15:32:40] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:32:45] Action: get_dashboard_stats | User: 1 | Role: admin
+[2025-12-27 15:32:45] getStats Query WHERE: 
+[2025-12-27 15:32:45] Customers Count: 2
+[2025-12-27 15:32:45] Revenue Sum: 100002114.00
+[2025-12-27 15:32:45] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:32:46] Action: generate_email_preview | User: 1 | Role: admin
+[2025-12-27 15:32:46] Critical Error: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1
+[2025-12-27 15:32:50] Action: get_dashboard_stats | User: 1 | Role: admin
+[2025-12-27 15:32:50] getStats Query WHERE: 
+[2025-12-27 15:32:50] Customers Count: 2
+[2025-12-27 15:32:50] Revenue Sum: 100002114.00
+[2025-12-27 15:32:50] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:32:55] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:32:55] Action: get_dashboard_stats | User: 1 | Role: admin
+[2025-12-27 15:32:55] getStats Query WHERE: 
+[2025-12-27 15:32:55] Customers Count: 2
+[2025-12-27 15:32:55] Revenue Sum: 100002114.00
+[2025-12-27 15:33:00] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:33:00] Action: get_dashboard_stats | User: 1 | Role: admin
+[2025-12-27 15:33:00] getStats Query WHERE: 
+[2025-12-27 15:33:00] Customers Count: 2
+[2025-12-27 15:33:00] Revenue Sum: 100002114.00
+[2025-12-27 15:33:05] Action: get_dashboard_stats | User: 1 | Role: admin
+[2025-12-27 15:33:05] getStats Query WHERE: 
+[2025-12-27 15:33:05] Customers Count: 2
+[2025-12-27 15:33:05] Revenue Sum: 100002114.00
+[2025-12-27 15:33:05] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:33:10] Action: get_dashboard_stats | User: 1 | Role: admin
+[2025-12-27 15:33:10] getStats Query WHERE: 
+[2025-12-27 15:33:10] Customers Count: 2
+[2025-12-27 15:33:10] Revenue Sum: 100002114.00
+[2025-12-27 15:33:10] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:33:15] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:33:15] Action: get_dashboard_stats | User: 1 | Role: admin
+[2025-12-27 15:33:15] getStats Query WHERE: 
+[2025-12-27 15:33:15] Customers Count: 2
+[2025-12-27 15:33:15] Revenue Sum: 100002114.00
+[2025-12-27 15:33:20] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:33:20] Action: get_dashboard_stats | User: 1 | Role: admin
+[2025-12-27 15:33:20] getStats Query WHERE: 
+[2025-12-27 15:33:20] Customers Count: 2
+[2025-12-27 15:33:20] Revenue Sum: 100002114.00
+[2025-12-27 15:33:23] Action: get_notifications | User: 2 | Role: sales_rep
+[2025-12-27 15:33:23] Action: get_deals | User: 2 | Role: sales_rep
+[2025-12-27 15:33:25] Action: get_dashboard_stats | User: 1 | Role: admin
+[2025-12-27 15:33:25] getStats Query WHERE: 
+[2025-12-27 15:33:25] Customers Count: 2
+[2025-12-27 15:33:25] Revenue Sum: 100002114.00
+[2025-12-27 15:33:25] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:33:30] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:33:30] Action: get_dashboard_stats | User: 1 | Role: admin
+[2025-12-27 15:33:30] getStats Query WHERE: 
+[2025-12-27 15:33:30] Customers Count: 2
+[2025-12-27 15:33:30] Revenue Sum: 100002114.00
+[2025-12-27 15:33:35] Action: get_dashboard_stats | User: 1 | Role: admin
+[2025-12-27 15:33:35] getStats Query WHERE: 
+[2025-12-27 15:33:35] Customers Count: 2
+[2025-12-27 15:33:35] Revenue Sum: 100002114.00
+[2025-12-27 15:33:35] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:33:40] Action: get_notifications | User: 1 | Role: admin
+[2025-12-27 15:33:40] Action: get_dashboard_stats | User: 1 | Role: admin
+[2025-12-27 15:33:40] getStats Query WHERE: 
+[2025-12-27 15:33:40] Customers Count: 2
+[2025-12-27 15:33:40] Revenue Sum: 100002114.00
+[2025-12-27 15:34:23] Action: get_dashboard_stats | User: 1 | Role: admin
+[2025-12-27 15:34:23] Action: get_notifications | User: 2 | Role: sales_rep
+[2025-12-27 15:34:23] Customers Count: 2
+[2025-12-27 15:34:23] Revenue Sum: 100002114.00
+[2025-12-27 15:34:23] Action: get_deals | User: 2 | Role: sales_rep
+[2025-12-27 15:34:23] Action: get_notifications | User: 1 | Role: admin
