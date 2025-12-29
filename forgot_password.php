@@ -1,42 +1,41 @@
 <?php
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
 require_once 'functions.php';
 require_once 'db.php';
+
+// --- LOAD PHPMAILER MANUALLY ---
+require 'vendor/src/Exception.php';
+require 'vendor/src/PHPMailer.php';
+require 'vendor/src/SMTP.php';
 
 start_secure_session();
 
 // --- CONFIGURATION ---
-// define('MOCK_EMAIL_MODE', true); // Set to FALSE when you go live (requires SMTP)
-// define('RATE_LIMIT_SECONDS', 120); // CHANGED: 2 Minutes
+define('RATE_LIMIT_SECONDS', 120); 
 
-
-define('MOCK_EMAIL_MODE', false); 
-define('RATE_LIMIT_SECONDS', 120);
 $message = "";
 $msg_type = "";
-$debug_link = ""; // Variable to hold the link for display
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     verify_csrf_token($_POST['csrf_token']);
     $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
 
-    // 1. RATE LIMITING (Session Based)
     if (isset($_SESSION['last_reset_request']) && (time() - $_SESSION['last_reset_request'] < RATE_LIMIT_SECONDS)) {
         $remaining = RATE_LIMIT_SECONDS - (time() - $_SESSION['last_reset_request']);
         $message = "Please wait $remaining seconds before requesting another link.";
         $msg_type = "warning";
     } else {
-        // 2. CHECK USER (Silently)
         $stmt = $pdo->prepare("SELECT id, full_name FROM users WHERE email = ?");
         $stmt->execute([$email]);
         $user = $stmt->fetch();
 
         if ($user) {
-            // Generate Secure Crypto Token
             $token = bin2hex(random_bytes(32)); 
             $token_hash = hash("sha256", $token);
-            $expiry = date("Y-m-d H:i:s", time() + 3600); // 1 Hour
+            $expiry = date("Y-m-d H:i:s", time() + 3600); 
 
-            // Update DB
             $update = $pdo->prepare("UPDATE users SET reset_token_hash = ?, reset_token_expires_at = ? WHERE id = ?");
             $update->execute([$token_hash, $expiry, $user['id']]);
 
@@ -46,46 +45,47 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $path = dirname($_SERVER['PHP_SELF']);
             $link = "$protocol://$host$path/reset_password.php?token=$token";
 
-            // 3. SEND EMAIL LOGIC
-            if (MOCK_EMAIL_MODE) {
-                // DEV MODE: Save to variable to show on screen
-                // $debug_link = $link;
-                
-                // Also write to file just in case
-                // $logEntry = "[" . date('Y-m-d H:i:s') . "] TO: $email | LINK: $link" . PHP_EOL;
-                // file_put_contents('email_log.txt', $logEntry, FILE_APPEND);
-            } else {
-                // --- REAL SERVER MODE ---
-                $subject = "Password Reset Request";
-                
-                // IMPORTANT: Use a real email address from your domain
-                $headers = "From: no-reply@your-website.com\r\n";
-                $headers .= "Reply-To: support@your-website.com\r\n";
-                $headers .= "MIME-Version: 1.0\r\n";
-                $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
+            // --- SMTP SENDING LOGIC ---
+            $mail = new PHPMailer(true);
 
-                $msgBody = "
-                <h3>Password Reset</h3>
-                <p>We received a request to reset your password.</p>
-                <p><a href='$link' style='background:#000; color:#fff; padding:10px 20px; text-decoration:none;'>Reset Password</a></p>
-                <p>Or click here: $link</p>
+            try {
+                // 1. Server Settings
+                $mail->isSMTP();
+                $mail->Host       = 'smtp.gmail.com'; 
+                $mail->SMTPAuth   = true;
+                $mail->Username   = 'YOUR_GMAIL_ADDRESS@gmail.com'; // <--- CHANGE THIS
+                $mail->Password   = 'YOUR_GMAIL_APP_PASSWORD';      // <--- CHANGE THIS
+                $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+                $mail->Port       = 587;
+
+                // 2. Recipients
+                $mail->setFrom('no-reply@frequent-crm.gt.tc', 'FrequentCRM Security');
+                $mail->addAddress($email);
+
+                // 3. Content
+                $mail->isHTML(true);
+                $mail->Subject = 'Password Reset Request';
+                $mail->Body    = "
+                    <h3>Password Reset</h3>
+                    <p>We received a request to reset your password for <b>FrequentCRM</b>.</p>
+                    <p>Click the link below to set a new secure key:</p>
+                    <p><a href='$link' style='background:#000; color:#fff; padding:10px 20px; text-decoration:none; font-weight:bold;'>RESET PASSWORD</a></p>
+                    <p style='color:#666; font-size:12px;'>If you did not request this, please ignore this email.</p>
                 ";
 
-                // The PHP mail() function works on 99% of hosting providers (GoDaddy, HostGator, etc.)
-                mail($email, $subject, $msgBody, $headers);
+                $mail->send();
+                
+            } catch (Exception $e) {
+                // Log error silently, don't show user
+                error_log("Message could not be sent. Mailer Error: {$mail->ErrorInfo}");
             }
         }
 
         $_SESSION['last_reset_request'] = time();
         
-        if ($user) {
-            $message = "Recovery email sent to <b>$email</b>.";
-            $msg_type = "success";
-        } else {
-            // Security: Don't reveal if user doesn't exist
-            $message = "If an account exists for <b>$email</b>, we have sent instructions.";
-            $msg_type = "success";
-        }
+        // Always show success message for security
+        $message = "If an account exists for <b>$email</b>, we have sent instructions.";
+        $msg_type = "success";
     }
 }
 ?>
@@ -119,15 +119,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <i class="bi <?php echo $msg_type == 'success' ? 'bi-check-circle-fill' : 'bi-hourglass-split'; ?> me-2"></i> 
                 <?php echo $message; ?>
             </div>
-            
-            <?php if(MOCK_EMAIL_MODE && !empty($debug_link)): ?>
-                <div class="alert alert-warning border-2 border-dark rounded-0">
-                    <strong class="d-block text-uppercase mb-2"><i class="bi bi-bug-fill"></i> Developer Mode</strong>
-                    <span class="small">Real emails cannot send from localhost. Use this link:</span>
-                    <a href="<?php echo $debug_link; ?>" class="btn btn-sm btn-dark w-100 mt-2 fw-bold">RESET PASSWORD NOW</a>
-                </div>
-            <?php endif; ?>
-
         <?php endif; ?>
 
         <form method="POST">

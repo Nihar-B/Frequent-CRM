@@ -9,7 +9,7 @@ $token_hash = hash("sha256", $token);
 $valid_request = false;
 $error = '';
 
-// 1. Validate Token (Exists & Not Expired)
+// 1. Validate Token
 $stmt = $pdo->prepare("SELECT * FROM users WHERE reset_token_hash = ? AND reset_token_expires_at > NOW()");
 $stmt->execute([$token_hash]);
 $user = $stmt->fetch();
@@ -26,16 +26,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $valid_request) {
     $pass = $_POST['password'];
     $confirm = $_POST['confirm_password'];
 
-    // 2. STRONG PASSWORD POLICY
-    // Min 8 chars, 1 Upper, 1 Lower, 1 Number, 1 Special Char
-    $regex = '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/';
-
+    // --- UPDATED LOGIC START ---
+    
+    // Check 1: Do they match?
     if ($pass !== $confirm) {
-        $error = "Passwords do not match.";
-    } elseif (!preg_match($regex, $pass)) {
-        $error = "Password too weak. Requires: 8+ chars, Uppercase, Lowercase, Number, Special Char.";
-    } else {
-        // 3. Update & Invalidate Token
+        $error = "Error: Passwords do not match.";
+    } 
+    // Check 2: Simple length check only (Weak passwords allowed)
+    elseif (strlen($pass) < 6) {
+        $error = "Error: Password must be at least 6 characters.";
+    } 
+    else {
+        // 3. Success - Update DB
         $new_hash = password_hash($pass, PASSWORD_DEFAULT);
         
         $update = $pdo->prepare("UPDATE users SET password = ?, reset_token_hash = NULL, reset_token_expires_at = NULL WHERE id = ?");
@@ -44,6 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $valid_request) {
         $_SESSION['success_msg'] = "Credentials updated successfully.";
         redirect('login.php');
     }
+    // --- UPDATED LOGIC END ---
 }
 ?>
 <!DOCTYPE html>
@@ -92,11 +95,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $valid_request) {
                 <div class="mb-3">
                     <label class="fw-bold text-uppercase small mb-1">New Password</label>
                     <input type="password" name="password" class="form-control" required>
-                    <ul class="password-reqs">
-                        <li>Min 8 Characters</li>
-                        <li>Uppercase & Lowercase</li>
-                        <li>Number & Special Char (@$!%*?&)</li>
-                    </ul>
+                    <div class="form-text text-muted small">Minimum 6 characters. No complexity required.</div>
                 </div>
 
                 <div class="mb-4">
