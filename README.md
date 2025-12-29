@@ -107,7 +107,7 @@ A concise summary of the relationships between tables (foreign keys and cardinal
 | `files` | `related_to`,`related_id` | polymorphic | 1 → * | File attachments (customer, deal, task, product)
 | `audit_logs` | `user_id` -> `users.id` | `users` | 1 → * | Which user made the change
 
-> Polymorphic fields (`related_to`, `related_id`) are used across `tasks`, `notes`, and `files` to allow attaching records to multiple entity types.
+> Polymorphic fields (`related_to`, `related_id`) are used across `tasks`, `notes`, and `files` to allow attaching records to multiple entity types.    
 
 **Tips:**
 - Add indexes on `assigned_to`, `customer_id`, `product_id`, and a composite index on (`related_to`,`related_id`) to improve query performance.
@@ -164,6 +164,35 @@ Refer to `api.php` for full parameter lists and behaviors.
 - Sessions: `functions.php` contains `start_secure_session()` used to initialize sessions; check cookie settings (httponly/secure) in production.
 - RBAC: Role enforcement exists in API (e.g., addUser restricts non-admins); verify all endpoints check roles where appropriate.
 - Email templates: `generateEmailPreview` is used for previewing templates; no real SMTP send is included (there is a mock `sendEmailMock`).
+
+---
+
+## 🔐 Credentials & Configuration
+
+**Where credentials are set (edit these locally)**
+- **Database:** `db.php` — edit `$host`, `$db`, `$user`, `$pass` so PDO can connect to your DB.
+- **SMTP (email sending):** `forgot_password.php` and `forgot_passwordEX.php` — update `$mail->Host`, `$mail->Username`, `$mail->Password`, and `$mail->Port` / encryption as needed (placeholders `YOUR_GMAIL_ADDRESS@gmail.com` / `YOUR_GMAIL_APP_PASSWORD` must be replaced).
+- **Public form API key:** `public_api.php` — update `$validKey` (the embed example in `index.php` uses `crm_secret_key_123`).
+
+**Security recommendations**
+- **Never commit secrets** to the repo. Use environment variables (getenv / `$_ENV`) or a local `config.local.php` that is added to `.gitignore` and required by `db.php` and `forgot_password.php`.
+- Prefer Gmail App Passwords or a dedicated SMTP service; do not use your main mailbox password.
+- Rotate keys regularly and use long random strings for API keys.
+
+**Quick example (safe local file)**
+```php
+// config.local.php (DO NOT COMMIT)
+define('DB_HOST', 'localhost');
+define('DB_NAME', 'crm_pro');
+define('DB_USER', 'user');
+define('DB_PASS', 'pass');
+define('SMTP_USER', 'no-reply@example.com');
+define('SMTP_PASS', 'xxxxxxxxxxxxxxxx');
+```
+Then update `db.php` and `forgot_password.php` to use these constants or `getenv()`.
+
+> Note: `email_log.txt` contains development email output (useful for troubleshooting); remove or secure it in production.
+
 - Public embed key: The public form sample includes a hardcoded API key `crm_secret_key_123` — rotate or secure this before production.
 
 ---
