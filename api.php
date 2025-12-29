@@ -58,6 +58,7 @@ try {
         case 'get_audit_history': getAuditHistory($pdo); break;
         case 'get_users': getUsers($pdo); break;
         case 'add_user': addUser($pdo, $role); break;
+        case 'update_user_role': updateUserRole($pdo, $uid, $role); break;
         case 'delete_item': deleteItem($pdo, $role); break;
         case 'export_data': exportData($pdo, $uid, $role); break;
         case 'get_notes': getNotes($pdo); break;
@@ -72,15 +73,15 @@ try {
         case 'get_email_templates': getEmailTemplates($pdo); break;
         case 'generate_email_preview': generateEmailPreview($pdo, $uid); break;
         case 'send_email_mock': sendEmailMock($pdo, $uid); break;
-
+        case 'get_task_detail': getTaskDetail($pdo, $_GET['id']); break;
         case 'upload_avatar': uploadAvatar($pdo, $uid); break;
-case 'upload_avatar': uploadAvatar($pdo, $uid); break;
 case 'delete_avatar': deleteAvatar($pdo, $uid); break;
 
 case 'global_search': globalSearch($pdo); break;
 
 case 'upload_customer_avatar': uploadCustomerAvatar($pdo); break;
-
+case 'get_archived_deals': getArchivedDeals($pdo, $role); break;
+case 'restore_item': restoreItem($pdo, $role); break;
         default: sendError('Invalid action');
     }
 } catch (Exception $e) {
@@ -228,9 +229,29 @@ function addProduct($pdo) { $pdo->prepare("INSERT INTO products (name,type,price
 function updateProduct($pdo) { $pdo->prepare("UPDATE products SET name=?, type=?, price=?, description=? WHERE id=?")->execute([$_POST['prod_name'],$_POST['prod_type'],$_POST['prod_price'],$_POST['prod_desc'],$_POST['prod_id']]); echo json_encode(['status'=>'success']); }
 
 function getTasks($pdo, $uid, $role) {
-    $where = ($role === 'sales_rep') ? " AND t.assigned_to = $uid" : "";
-    $sql = "SELECT t.*, u.full_name as assigned_name FROM tasks t LEFT JOIN users u ON t.assigned_to=u.id WHERE t.deleted_at IS NULL $where";
-    echo json_encode(['status'=>'success', 'data'=>$pdo->query($sql." ORDER BY t.due_date ASC")->fetchAll()]);
+    // Join with users table to check the role of the task owner
+    $sql = "SELECT t.*, u.full_name as assigned_name, u.role as owner_role 
+            FROM tasks t 
+            LEFT JOIN users u ON t.assigned_to = u.id 
+            WHERE t.deleted_at IS NULL";
+
+    if ($role === 'sales_rep') {
+        // Sales Rep: Only see assigned to self
+        $sql .= " AND t.assigned_to = $uid";
+    } 
+    elseif ($role === 'manager') {
+        // Manager: See assigned to self OR assigned to Sales Reps
+        $sql .= " AND (t.assigned_to = $uid OR u.role = 'sales_rep')";
+    } 
+    elseif ($role === 'admin') {
+        // Admin: See assigned to self OR assigned to Managers/Sales Reps
+        // (Excludes Super Admin and other Admins)
+        $sql .= " AND (t.assigned_to = $uid OR u.role IN ('manager', 'sales_rep'))";
+    }
+    // Super Admin: Sees all (No WHERE clause added)
+
+    $stmt = $pdo->query($sql . " ORDER BY t.due_date ASC");
+    echo json_encode(['status'=>'success', 'data'=>$stmt->fetchAll()]);
 }
 
 function addTask($pdo, $uid) {
@@ -272,32 +293,138 @@ function getUsers($pdo) {
         'data'=>$pdo->query("SELECT id, full_name, email, role, avatar FROM users WHERE deleted_at IS NULL")->fetchAll()
     ]); 
 }
-function addUser($pdo, $role) { 
-    // Security: Only Admins can add users
-    if($role === 'sales_rep') { 
-        sendError('Permission denied'); 
-        return; 
+function addUser($pdo, $currentRole) {
+    // 1. Validate Input
+    if (!isset($_POST['full_name'], $_POST['email'], $_POST['password'], $_POST['role'])) {
+        sendError('Missing required fields');
     }
 
-    // Default to sales_rep if role is missing
-    $newRole = !empty($_POST['role']) ? $_POST['role'] : 'sales_rep';
+    $targetRole = $_POST['role'];
 
-    $stmt = $pdo->prepare("INSERT INTO users (full_name, email, password, role) VALUES (?, ?, ?, ?)");
-    
-    // Execute with the 4 values
-    $stmt->execute([
-        $_POST['full_name'],
-        $_POST['email'],
-        password_hash($_POST['password'], PASSWORD_DEFAULT),
-        $newRole // <--- This ensures the role is sent
-    ]); 
-    
-    echo json_encode(['status'=>'success']); 
+    // 2. Strict Permission Logic (Hierarchy Check)
+    switch ($currentRole) {
+        case 'super_admin':
+            // Super Admin can add ANYONE
+            // No restrictions
+            break; 
+
+        case 'admin':
+            // Admin CANNOT add Super Admin or other Admins
+            if ($targetRole === 'super_admin' || $targetRole === 'admin') {
+                sendError('Admins can only create Managers and Sales Reps.');
+                return;
+            }
+            break;
+
+        case 'manager':
+            // Manager CANNOT add Super Admin, Admin, or Manager
+            // Manager CAN STRICTLY ONLY add Sales Rep
+            if ($targetRole !== 'sales_rep') {
+                sendError('Managers can only create Sales Reps.');
+                return;
+            }
+            break;
+
+        case 'sales_rep':
+        default:
+            sendError('Permission denied: You cannot create users.');
+            return;
+    }
+
+    // 3. Check if email exists
+    $stmt = $pdo->prepare("SELECT id FROM users WHERE email = ?");
+    $stmt->execute([$_POST['email']]);
+    if ($stmt->fetch()) {
+        sendError('Email already registered');
+        return;
+    }
+
+    // 4. Insert User
+    // Default status is 'active' based on your SQL dump
+    $sql = "INSERT INTO users (full_name, email, password, role, status) VALUES (?, ?, ?, ?, 'active')";
+    $pdo->prepare($sql)->execute([
+        $_POST['full_name'], 
+        $_POST['email'], 
+        password_hash($_POST['password'], PASSWORD_DEFAULT), 
+        $targetRole
+    ]);
+
+    echo json_encode(['status' => 'success']);
 }
 function deleteItem($pdo, $role) { 
-    if($role==='sales_rep') { sendError('Permission denied'); return; }
-    $pdo->prepare("UPDATE {$_POST['type']} SET deleted_at=NOW() WHERE id=?")->execute([$_POST['id']]); echo json_encode(['status'=>'success']); 
+    $type = $_POST['type'];
+    $id = $_POST['id'];
+    $uid = $_SESSION['user_id']; // Need current user ID for ownership check
+
+    // --- LOGIC FOR DEALS (Soft Delete + Ownership Check) ---
+    if ($type === 'deals') {
+        // 1. Fetch the deal to check who owns it
+        $stmt = $pdo->prepare("SELECT assigned_to FROM deals WHERE id = ?");
+        $stmt->execute([$id]);
+        $deal = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if (!$deal) { 
+            sendError('Deal not found'); 
+            return; 
+        }
+
+        // 2. Permission Logic
+        $canDelete = false;
+
+        // Super Admin & Admin can delete ANY deal
+        if ($role === 'super_admin' || $role === 'admin') {
+            $canDelete = true;
+        }
+        // Sales Rep can ONLY delete THEIR OWN deal
+        elseif ($role === 'sales_rep' && $deal['assigned_to'] == $uid) {
+            $canDelete = true;
+        }
+
+        if (!$canDelete) {
+            sendError('Permission denied: You can only delete your own deals.');
+            return;
+        }
+
+        // 3. SOFT DELETE (Update deleted_at instead of DELETE FROM)
+        $pdo->prepare("UPDATE deals SET deleted_at = NOW() WHERE id = ?")->execute([$id]);
+        echo json_encode(['status'=>'success', 'msg' => 'Deal archived']);
+        return;
+    }
+
+    // --- LOGIC FOR USERS (Hard Delete - From previous request) ---
+    if ($type === 'users') {
+        // ... (Keep your existing hierarchy logic for users here) ...
+        if ($role === 'sales_rep') { sendError('Permission denied'); return; }
+        
+        $stmt = $pdo->prepare("SELECT role FROM users WHERE id = ?");
+        $stmt->execute([$id]);
+        $target = $stmt->fetch();
+        if (!$target) { sendError('User not found'); return; }
+        $targetRole = $target['role'];
+
+        if ($role === 'manager' && $targetRole !== 'sales_rep') { sendError('Permission denied'); return; }
+        if ($role === 'admin' && ($targetRole === 'admin' || $targetRole === 'super_admin')) { sendError('Permission denied'); return; }
+
+        // Unassign work before hard delete
+        $pdo->prepare("UPDATE customers SET assigned_to = NULL WHERE assigned_to = ?")->execute([$id]);
+        $pdo->prepare("UPDATE deals SET assigned_to = NULL WHERE assigned_to = ?")->execute([$id]);
+        $pdo->prepare("UPDATE tasks SET assigned_to = NULL WHERE assigned_to = ?")->execute([$id]);
+        
+        // Hard Delete
+        $pdo->prepare("DELETE FROM users WHERE id=?")->execute([$id]);
+        echo json_encode(['status'=>'success']);
+        return;
+    }
+
+    // --- GENERIC FALLBACK (For other items like products/tasks) ---
+    if ($role === 'sales_rep') { sendError('Permission denied'); return; }
+    
+    // Default to Soft Delete for other items if not specified, or Hard Delete based on preference.
+    // Assuming Soft Delete for consistency with standard CRM safety:
+    $pdo->prepare("UPDATE $type SET deleted_at=NOW() WHERE id=?")->execute([$id]); 
+    echo json_encode(['status'=>'success']); 
 }
+
 function getNotifications($pdo, $uid) { $stmt=$pdo->prepare("SELECT COUNT(*) FROM tasks WHERE assigned_to=? AND status='Pending' AND due_date<=CURDATE() AND deleted_at IS NULL"); $stmt->execute([$uid]); echo json_encode(['status'=>'success', 'count'=>$stmt->fetchColumn()]); }
 function getNotes($pdo) { $stmt=$pdo->prepare("SELECT n.*, u.full_name, DATE_FORMAT(n.created_at,'%b %d %h:%i%p') date FROM notes n JOIN users u ON n.created_by=u.id WHERE related_to=? AND related_id=? ORDER BY created_at DESC"); $stmt->execute([$_GET['type'],$_GET['id']]); echo json_encode(['status'=>'success', 'data'=>$stmt->fetchAll()]); }
 
@@ -517,5 +644,119 @@ function uploadCustomerAvatar($pdo) {
     } else {
         echo json_encode(['status' => 'error', 'message' => 'Write permission denied']);
     }
+}
+function updateUserRole($pdo, $currentUserId, $currentRole) {
+    // 1. Security Check: Only Admins/Super Admins allowed
+    if ($currentRole !== 'super_admin' && $currentRole !== 'admin') {
+        sendError('Permission denied');
+        return;
+    }
+
+    $targetUserId = $_POST['user_id'];
+    $newRole = $_POST['new_role'];
+
+    // 2. Fetch Target User Data
+    $stmt = $pdo->prepare("SELECT role FROM users WHERE id = ?");
+    $stmt->execute([$targetUserId]);
+    $targetUser = $stmt->fetch();
+
+    if (!$targetUser) {
+        sendError('User not found');
+        return;
+    }
+
+    // 3. Logic for Regular ADMINS
+    if ($currentRole === 'admin') {
+        // RULE 1: Admin cannot modify Super Admin OR other Admins
+        if ($targetUser['role'] === 'super_admin' || $targetUser['role'] === 'admin') {
+            sendError('Permission denied: You cannot modify Super Admins or other Admins.');
+            return;
+        }
+
+        // RULE 2: Admin cannot promote anyone TO Super Admin
+        if ($newRole === 'super_admin') {
+            sendError('Permission denied: You cannot promote users to Super Admin.');
+            return;
+        }
+    }
+
+    // 4. Update the Role
+    // ... (rest of the function remains the same)
+    $stmt = $pdo->prepare("UPDATE users SET role = ? WHERE id = ?");
+    $stmt->execute([$newRole, $targetUserId]);
+    // ...
+    echo json_encode(['status' => 'success']);
+}
+function getTaskDetail($pdo, $id) {
+    // This query joins Users, Customers, and Deals to get actual names instead of just IDs
+    $sql = "SELECT t.*, 
+            u.full_name as assigned_name,
+            u.avatar as assigned_avatar,
+            CASE 
+                WHEN t.related_to = 'customer' THEN CONCAT(c.first_name, ' ', c.last_name, ' (', c.company, ')')
+                WHEN t.related_to = 'deal' THEN d.title
+                ELSE 'N/A' 
+            END as related_name
+            FROM tasks t 
+            LEFT JOIN users u ON t.assigned_to = u.id 
+            LEFT JOIN customers c ON t.related_to = 'customer' AND t.related_id = c.id
+            LEFT JOIN deals d ON t.related_to = 'deal' AND t.related_id = d.id
+            WHERE t.id = ?";
+            
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([$id]);
+    $task = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+    if($task) {
+        echo json_encode(['status' => 'success', 'data' => $task]);
+    } else {
+        echo json_encode(['status' => 'error', 'message' => 'Task not found']);
+    }
+}
+function getArchivedDeals($pdo, $role) {
+    // Security Check
+    if ($role !== 'admin' && $role !== 'super_admin') {
+        sendError('Permission denied');
+        return;
+    }
+
+    // Fetch archived deals joined with customer names
+    $sql = "SELECT d.*, c.company as customer_name, u.full_name as owner_name,
+            DATE_FORMAT(d.deleted_at, '%b %d %Y %h:%i %p') as archived_date
+            FROM deals d 
+            LEFT JOIN customers c ON d.customer_id = c.id 
+            LEFT JOIN users u ON d.assigned_to = u.id 
+            WHERE d.deleted_at IS NOT NULL 
+            ORDER BY d.deleted_at DESC";
+    
+    $stmt = $pdo->query($sql);
+    echo json_encode(['status' => 'success', 'data' => $stmt->fetchAll(PDO::FETCH_ASSOC)]);
+}
+
+function restoreItem($pdo, $role) {
+    // Security Check
+    if ($role !== 'admin' && $role !== 'super_admin') {
+        sendError('Permission denied');
+        return;
+    }
+
+    $type = $_POST['type'];
+    $id = $_POST['id'];
+
+    // Whitelist tables to prevent SQL injection
+    $allowed = ['deals', 'customers', 'products', 'tasks', 'users']; 
+    if (!in_array($type, $allowed)) { 
+        sendError('Invalid type'); 
+        return; 
+    }
+
+    // Restore logic (Set deleted_at to NULL)
+    $sql = "UPDATE $type SET deleted_at = NULL WHERE id = ?";
+    $pdo->prepare($sql)->execute([$id]);
+    
+    // Log the restoration (Optional but good for audit)
+    // logChange($pdo, $_SESSION['user_id'], 'deal', $id, 'Status', 'Archived', 'Restored');
+
+    echo json_encode(['status' => 'success', 'msg' => 'Item restored successfully']);
 }
 ?>

@@ -392,7 +392,9 @@ if ($currentUser) {
         <div onclick="nav('tasks')" class="nav-link"><i class="bi bi-check-square-fill"></i> Tasks</div>
         <div onclick="nav('calendar')" class="nav-link"><i class="bi bi-calendar-event-fill"></i> Calendar</div>
         <div onclick="nav('team')" class="nav-link" id="nav-team"><i class="bi bi-person-badge-fill"></i> Team</div>
-        
+        <div onclick="nav('archive')" class="nav-link" id="nav-archive" style="display:none;">
+    <i class="bi bi-archive-fill"></i> Archive
+</div>
         <div class="mt-auto p-3">
             <a href="logout.php" class="btn btn-outline-primary w-100">LOGOUT</a>
         </div>
@@ -606,7 +608,30 @@ if ($currentUser) {
             </div>
             <div class="row" id="team-grid"></div>
         </div>
-
+                        <div id="view-archive" class="view-section" style="display:none;">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h4><i class="bi bi-trash3 me-2"></i> ARCHIVED DEALS</h4>
+        <span class="badge bg-warning text-dark border border-dark">ADMIN ACCESS ONLY</span>
+    </div>
+    
+    <div class="card-neo p-0">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="bg-dark text-white">
+                    <tr>
+                        <th>Deal Title</th>
+                        <th>Value</th>
+                        <th>Client</th>
+                        <th>Archived Date</th>
+                        <th class="text-end">Action</th>
+                    </tr>
+                </thead>
+                <tbody id="archive-table">
+                    </tbody>
+            </table>
+        </div>
+    </div>
+</div>
     </div>
 
     <div class="modal fade" id="modalCustomer" tabindex="-1"><div class="modal-dialog modal-lg"><div class="modal-content">
@@ -769,8 +794,17 @@ if ($currentUser) {
                 <div class="mb-3"><input type="text" name="full_name" class="form-control" placeholder="Full Name" required></div>
                 <div class="mb-3"><input type="email" name="email" class="form-control" placeholder="Email" required></div>
                 <div class="mb-3"><input type="password" name="password" class="form-control" placeholder="Password" required></div>
-                <div class="mb-3"><select name="role" class="form-select"><option value="sales_rep">Sales Rep</option><option value="manager">Manager</option><option value="admin">Admin</option></select></div>
-                <button type="submit" class="btn btn-primary w-100">CREATE ACCOUNT</button>
+                <div class="mb-3">
+    <label class="form-label small fw-bold">ROLE</label>
+    <select name="role" class="form-select">
+        <option value="sales_rep">Sales Rep</option>
+        <option value="manager">Manager</option>
+        <option value="admin">Admin</option>
+        
+        <option value="super_admin">Super Admin</option>
+    </select>
+</div>
+<button type="submit" class="btn btn-primary w-100">CREATE ACCOUNT</button>
             </form>
         </div>
     </div></div></div>
@@ -795,10 +829,121 @@ if ($currentUser) {
         <div class="modal-body">
             <p class="small fw-bold">COPY THIS CODE:</p>
             <textarea class="form-control bg-light" rows="10" readonly id="embedCode"></textarea>
-            <button class="btn btn-sm btn-secondary mt-2 w-100" onclick="navigator.clipboard.writeText(document.getElementById('embedCode').value); alert('COPIED!');">COPY TO CLIPBOARD</button>
+            <button class="btn btn-sm btn-secondary mt-2 w-100" onclick="navigator.clipboard.writeText(document.getElementById('embedCode').value); showToast('COPIED TO CLIPBOARD', 'success');">COPY TO CLIPBOARD</button>
         </div>
     </div></div></div>
+<div class="modal fade" id="modalChangeRole" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">CHANGE USER ROLE</h5>
+                <button class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="formChangeRole">
+                    <input type="hidden" name="user_id" id="role_user_id">
+                    
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">SELECT NEW ROLE</label>
+                        <select name="new_role" id="role_select" class="form-select">
+                            </select>
+                    </div>
 
+                    <div class="alert alert-warning small">
+                        <i class="bi bi-exclamation-triangle-fill"></i> 
+                        Changing a role will immediately update the user's permissions.
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100">UPDATE ACCESS</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="viewTaskModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header border-bottom border-2 border-dark" style="background: #f3f4f6;">
+                <h5 class="modal-title text-uppercase fw-bold">
+                    <i class="bi bi-eye-fill me-2"></i> Task Details
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4">
+                
+                <div class="d-flex justify-content-between align-items-start mb-4">
+                    <div>
+                        <span id="view_task_status" class="badge rounded-0 border border-dark text-uppercase px-3 py-2 fs-6">Loading...</span>
+                    </div>
+                    <div class="text-end">
+                        <small class="text-muted fw-bold text-uppercase d-block">Due Date</small>
+                        <span id="view_task_date" class="fs-5 fw-bold font-monospace">--/--/----</span>
+                    </div>
+                </div>
+
+                <h3 id="view_task_title" class="fw-bold mb-4 text-break brand-font">...</h3>
+
+                <div class="mb-4">
+                    <label class="small text-muted fw-bold text-uppercase mb-1">Description</label>
+                    <div class="p-3 border border-2 border-dark rounded bg-light" style="min-height: 80px;">
+                        <p id="view_task_desc" class="mb-0 text-break" style="white-space: pre-wrap;">No description provided.</p>
+                    </div>
+                </div>
+
+                <div class="row g-3">
+                    <div class="col-12 col-md-6">
+                        <div class="border border-dark p-2 rounded d-flex align-items-center gap-2">
+                            <div id="view_task_avatar">
+                                </div>
+                            <div class="overflow-hidden">
+                                <small class="text-muted fw-bold text-uppercase d-block" style="font-size: 0.7rem;">Assigned To</small>
+                                <div id="view_task_assignee" class="fw-bold text-truncate">...</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-md-6">
+                        <div class="border border-dark p-2 rounded">
+                            <small class="text-muted fw-bold text-uppercase d-block" style="font-size: 0.7rem;">Related To</small>
+                            <div id="view_task_related" class="fw-bold text-truncate">None</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            
+            <div class="modal-footer border-top border-2 border-dark bg-white">
+                <input type="hidden" id="view_task_id">
+                <button type="button" class="btn btn-outline-dark fw-bold" data-bs-dismiss="modal">CLOSE</button>
+                <button type="button" class="btn btn-primary fw-bold" onclick="switchToEditTask()">
+                    <i class="bi bi-pencil-fill me-1"></i> EDIT TASK
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="deleteConfirmModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-3 border-dark shadow-hard" style="box-shadow: 10px 10px 0 #000;">
+            <div class="modal-header bg-danger text-white border-bottom border-2 border-dark">
+                <h5 class="modal-title fw-bold font-monospace">
+                    <i class="bi bi-exclamation-triangle-fill me-2"></i>CONFIRM DELETE
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body p-4 fw-bold">
+                Are you sure you want to delete this item?
+                <div class="text-danger mt-2 small font-monospace">THIS ACTION IS PERMANENT.</div>
+            </div>
+            <div class="modal-footer bg-light border-top border-2 border-dark">
+                <button type="button" class="btn btn-outline-dark fw-bold border-2" data-bs-dismiss="modal">CANCEL</button>
+                <button type="button" class="btn btn-danger fw-bold border-2 border-dark shadow-sm" id="btnConfirmDeleteAction">
+                    YES, DELETE IT
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
     <div id="toast-container"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -832,7 +977,46 @@ if ($currentUser) {
                     }
                 });
             }
+document.getElementById('btnConfirmDeleteAction').addEventListener('click', function() {
+        if (!pendingDelete) return;
 
+        const fd = new FormData(); 
+        fd.append('type', pendingDelete.type); 
+        fd.append('id', pendingDelete.id);
+        
+        // Disable button to prevent double clicks
+        this.disabled = true;
+        this.innerText = "DELETING...";
+
+        fetch('api.php?action=delete_item', {method: 'POST', body: fd})
+        .then(r => r.json())
+        .then(d => {
+            // Reset Button
+            this.disabled = false;
+            this.innerText = "YES, DELETE IT";
+
+            // Hide Modal
+            const modalEl = document.getElementById('deleteConfirmModal');
+            const modalInstance = bootstrap.Modal.getInstance(modalEl);
+            modalInstance.hide();
+
+            if (d.status === 'success') {
+                // SHOW TOAST (Not Alert)
+                showToast(d.msg || 'Item deleted successfully', 'success');
+                
+                // Refresh Data
+                loadAllData();
+            } else {
+                showToast(d.message || 'Delete failed', 'error');
+            }
+        })
+        .catch(err => {
+            console.error(err);
+            this.disabled = false;
+            this.innerText = "YES, DELETE IT";
+            showToast('Network Error', 'error');
+        });
+    });
             async function performGlobalSearch(query) {
                 // 1. Switch View
                 nav('search'); 
@@ -904,6 +1088,7 @@ if ($currentUser) {
             if (document.getElementById('view-sales').style.display !== 'none') loadPipeline();
             if (document.getElementById('view-dashboard').style.display !== 'none') loadStats();
             if (document.getElementById('view-products').style.display !== 'none') loadProducts();
+            if (document.getElementById('view-archive').style.display !== 'none') loadArchivedDeals();
             if (document.getElementById('view-calendar').style.display !== 'none' && calendarInstance) calendarInstance.refetchEvents();
         }
 
@@ -925,13 +1110,55 @@ if ($currentUser) {
             }
         }
 
-        function applyRBAC() {
-            if (currentUser.role === 'sales_rep') document.getElementById('nav-team').style.display = 'none';
-            if (currentUser.role === 'manager') {
-                const adminOpt = document.querySelector('select[name="role"] option[value="admin"]');
-                if(adminOpt) adminOpt.remove();
-            }
+function applyRBAC() {
+    // 1. Hide "Team" Menu for Sales Reps
+    if (currentUser.role === 'sales_rep') {
+        const teamNav = document.getElementById('nav-team');
+        if (teamNav) teamNav.style.display = 'none';
+    }
+
+    // 2. Modify "Add User" Modal Role Dropdown
+    const roleSelect = document.querySelector('select[name="role"]');
+    
+    if (roleSelect) {
+        // Clear existing hardcoded options
+        roleSelect.innerHTML = '';
+
+        if (currentUser.role === 'super_admin') {
+            // Super Admin sees everything
+            roleSelect.innerHTML = `
+                <option value="sales_rep">Sales Rep</option>
+                <option value="manager">Manager</option>
+                <option value="admin">Admin</option>
+                <option value="super_admin">Super Admin</option>
+            `;
+        } 
+
+        else if (currentUser.role === 'admin') {
+            // Admin sees Manager and Sales Rep
+            roleSelect.innerHTML = `
+                <option value="sales_rep">Sales Rep</option>
+                <option value="manager">Manager</option>
+            `;
+        } 
+        else if (currentUser.role === 'manager') {
+            // Manager sees ONLY Sales Rep
+            roleSelect.innerHTML = `
+                <option value="sales_rep">Sales Rep</option>
+            `;
         }
+    }
+    
+    // 3. Hide "Add Member" button completely if Sales Rep (Double check)
+    if (currentUser.role === 'sales_rep') {
+        const btnAddUser = document.getElementById('btnAddUser');
+        if (btnAddUser) btnAddUser.style.display = 'none';
+    }
+    if (currentUser.role === 'admin' || currentUser.role === 'super_admin') {
+        const archiveNav = document.getElementById('nav-archive');
+        if (archiveNav) archiveNav.style.display = 'block';
+    }
+}
 
         async function loadStats() {
             const res = await fetch('api.php?action=get_dashboard_stats');
@@ -941,7 +1168,57 @@ if ($currentUser) {
                 document.getElementById('dash-revenue').innerText = '$' + parseFloat(d.data.revenue).toLocaleString();
             }
         }
+// Fetch Archived Deals
+async function loadArchivedDeals() {
+    const res = await fetch('api.php?action=get_archived_deals');
+    const d = await res.json();
+    let html = '';
 
+    if (d.data && d.data.length > 0) {
+        d.data.forEach(deal => {
+            html += `
+            <tr class="bg-light">
+                <td>
+                    <div class="fw-bold text-decoration-line-through text-muted">${deal.title}</div>
+                    <small class="text-muted">${deal.stage}</small>
+                </td>
+                <td class="text-muted text-decoration-line-through">$${parseFloat(deal.value).toLocaleString()}</td>
+                <td>${deal.customer_name || 'Unknown'}</td>
+                <td class="small font-monospace">${deal.archived_date}</td>
+                <td class="text-end">
+                    <button class="btn btn-sm btn-success fw-bold border-dark shadow-sm" 
+                            onclick="restoreItem('deals', ${deal.id})">
+                        <i class="bi bi-arrow-counterclockwise me-1"></i> RESTORE
+                    </button>
+                </td>
+            </tr>`;
+        });
+    } else {
+        html = '<tr><td colspan="5" class="text-center text-muted py-4 fst-italic">No archived deals found.</td></tr>';
+    }
+    document.getElementById('archive-table').innerHTML = html;
+}
+
+// Restore Action
+function restoreItem(type, id) {
+    if (!confirm("Are you sure you want to restore this deal to the active pipeline?")) return;
+
+    const fd = new FormData();
+    fd.append('type', type);
+    fd.append('id', id);
+
+    fetch('api.php?action=restore_item', { method: 'POST', body: fd })
+        .then(r => r.json())
+        .then(d => {
+            if (d.status === 'success') {
+                showToast(d.msg, 'success');
+                loadArchivedDeals(); // Refresh list
+            } else {
+                showToast(d.message || 'Restore failed', 'error');
+            }
+        })
+        .catch(err => showToast('Network error', 'error'));
+}
         async function loadCustomers(search = '') {
             const res = await fetch('api.php?action=get_customers' + (search ? '&search=' + encodeURIComponent(search) : ''));
             const d = await res.json();
@@ -983,68 +1260,85 @@ if ($currentUser) {
             });
         }
 
-        async function loadPipeline() {
-            const res = await fetch('api.php?action=get_deals');
-            const d = await res.json();
-            
-            const stages = ['lead', 'proposal', 'negotiation', 'closed'];
-            let totals = { lead: { count: 0, val: 0 }, proposal: { count: 0, val: 0 }, negotiation: { count: 0, val: 0 }, closed: { count: 0, val: 0 } };
+async function loadPipeline() {
+    const res = await fetch('api.php?action=get_deals');
+    const d = await res.json();
+    
+    const stages = ['lead', 'proposal', 'negotiation', 'closed'];
+    let totals = { lead: { count: 0, val: 0 }, proposal: { count: 0, val: 0 }, negotiation: { count: 0, val: 0 }, closed: { count: 0, val: 0 } };
 
-            stages.forEach(stage => {
-                const col = document.getElementById('col-' + stage);
-                if (!col) return;
-                col.innerHTML = ''; 
-                let headerId = 'stats-' + stage;
-                let header = document.getElementById(headerId);
-                if (!header) {
-                    header = document.createElement('div');
-                    header.id = headerId;
-                    header.className = 'd-flex justify-content-between mb-2 font-monospace small fw-bold px-1';
-                    header.style.fontSize = '0.8rem';
-                    col.parentNode.insertBefore(header, col); 
-                }
-                header.innerHTML = '<span class="text-muted">0 DEALS</span> <span class="text-muted">$0</span>';
-            });
-
-            if (d.data) {
-                d.data.forEach(deal => {
-                    const stageKey = deal.stage.toLowerCase();
-                    if (totals[stageKey]) {
-                        totals[stageKey].count++;
-                        totals[stageKey].val += parseFloat(deal.value || 0);
-                    }
-                    let delBtn = (currentUser.role !== 'sales_rep') 
-                        ? `<i class="bi bi-x-lg float-end text-danger" style="cursor:pointer;" onclick="event.stopPropagation(); deleteItem('deals', ${deal.id})"></i>` 
-                        : '';
-                    let card = `
-                        <div class="pipeline-card" data-id="${deal.id}" onclick="openEditDeal(${deal.id})">
-                            ${delBtn}
-                            <div class="fw-bold text-uppercase pe-3">${deal.title}</div>
-                            <div class="text-success fw-bold mt-1" style="font-size: 1.1rem;">$${parseFloat(deal.value).toLocaleString()}</div>
-                            
-                            <div class="d-flex justify-content-between mt-2 border-top border-dark pt-2">
-                                <small class="text-muted text-truncate" style="max-width: 140px;">
-                                    <i class="bi bi-person-fill"></i> ${deal.customer_name || 'Unknown'}
-                                </small>
-                                <small class="text-primary fw-bold" style="cursor:pointer;" onclick="event.stopPropagation(); openNotes('deal', ${deal.id})">NOTES</small>
-                            </div>
-                        </div>`;
-                    const colContainer = document.getElementById('col-' + stageKey);
-                    if (colContainer) colContainer.innerHTML += card;
-                });
-
-                stages.forEach(stage => {
-                    const t = totals[stage];
-                    if (t) {
-                        const money = t.val.toLocaleString('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 });
-                        const header = document.getElementById('stats-' + stage);
-                        if (header) {
-                            header.innerHTML = `<span>${t.count} DEAL${t.count !== 1 ? 'S' : ''}</span> <span>${money}</span>`;
-                        }
-                    }
-                });
-            }
+    // Reset columns
+    stages.forEach(stage => {
+        const col = document.getElementById('col-' + stage);
+        if (!col) return;
+        col.innerHTML = ''; 
+        let headerId = 'stats-' + stage;
+        let header = document.getElementById(headerId);
+        if (!header) {
+            header = document.createElement('div');
+            header.id = headerId;
+            header.className = 'd-flex justify-content-between mb-2 font-monospace small fw-bold px-1';
+            header.style.fontSize = '0.8rem';
+            col.parentNode.insertBefore(header, col); 
         }
+        header.innerHTML = '<span class="text-muted">0 DEALS</span> <span class="text-muted">$0</span>';
+    });
+
+    if (d.data) {
+        d.data.forEach(deal => {
+            const stageKey = deal.stage.toLowerCase();
+            if (totals[stageKey]) {
+                totals[stageKey].count++;
+                totals[stageKey].val += parseFloat(deal.value || 0);
+            }
+
+            // --- PERMISSION LOGIC FOR DELETE BUTTON ---
+            let showDelete = false;
+
+            // 1. Super Admin & Admin: Always Show
+            if (currentUser.role === 'super_admin' || currentUser.role === 'admin') {
+                showDelete = true;
+            }
+            // 2. Sales Rep: Show ONLY if they own the deal
+            else if (currentUser.role === 'sales_rep' && deal.assigned_to == currentUser.id) {
+                showDelete = true;
+            }
+
+            let delBtn = showDelete 
+                ? `<i class="bi bi-x-lg float-end text-danger" style="cursor:pointer;" onclick="event.stopPropagation(); deleteItem('deals', ${deal.id})"></i>` 
+                : '';
+            // ------------------------------------------
+
+            let card = `
+                <div class="pipeline-card" data-id="${deal.id}" onclick="openEditDeal(${deal.id})">
+                    ${delBtn}
+                    <div class="fw-bold text-uppercase pe-3">${deal.title}</div>
+                    <div class="text-success fw-bold mt-1" style="font-size: 1.1rem;">$${parseFloat(deal.value).toLocaleString()}</div>
+                    
+                    <div class="d-flex justify-content-between mt-2 border-top border-dark pt-2">
+                        <small class="text-muted text-truncate" style="max-width: 140px;">
+                            <i class="bi bi-person-fill"></i> ${deal.customer_name || 'Unknown'}
+                        </small>
+                        <small class="text-primary fw-bold" style="cursor:pointer;" onclick="event.stopPropagation(); openNotes('deal', ${deal.id})">NOTES</small>
+                    </div>
+                </div>`;
+            const colContainer = document.getElementById('col-' + stageKey);
+            if (colContainer) colContainer.innerHTML += card;
+        });
+
+        // Update Totals headers
+        stages.forEach(stage => {
+            const t = totals[stage];
+            if (t) {
+                const money = t.val.toLocaleString('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 });
+                const header = document.getElementById('stats-' + stage);
+                if (header) {
+                    header.innerHTML = `<span>${t.count} DEAL${t.count !== 1 ? 'S' : ''}</span> <span>${money}</span>`;
+                }
+            }
+        });
+    }
+}
 
         async function loadProducts() {
             const res = await fetch('api.php?action=get_products');
@@ -1063,63 +1357,137 @@ if ($currentUser) {
             document.getElementById('product-table').innerHTML = html;
         }
 
-        async function loadTasks() {
-            const res = await fetch('api.php?action=get_tasks');
-            const d = await res.json();
-            let html = '';
-            if(d.data) {
-                d.data.forEach(t => {
-                    let del = (currentUser.role !== 'sales_rep') ? `<button class="btn btn-sm btn-outline-danger ms-1 fw-bold" style="color:red; border-color:red;" onclick="deleteItem('tasks', ${t.id})">X</button>` : '';
-                    let color = t.status === 'Completed' ? 'success' : 'warning';
-                    html += `<tr>
-                        <td><div class="fw-bold ${t.status === 'Completed' ? 'text-decoration-line-through text-muted' : ''}">${t.title}</div><div class="small text-muted text-truncate" style="max-width:200px">${t.description||''}</div></td>
-                        <td>${t.due_date}</td><td>${t.assigned_name}</td>
-                        <td><select onchange="quickUpdateStatus(${t.id},this.value)" class="form-select form-select-sm border-2 border-dark fw-bold"><option value="Pending" ${t.status=='Pending'?'selected':''}>PENDING</option><option value="In Progress" ${t.status=='In Progress'?'selected':''}>IN PROGRESS</option><option value="Completed" ${t.status=='Completed'?'selected':''}>COMPLETED</option></select></td>
-                        <td><div class="d-flex"><button class="btn btn-sm btn-outline-primary" onclick="openEditTask(${t.id})"><i class="bi bi-pencil-fill"></i></button>${del}</div></td>
-                    </tr>`;
-                });
-            }
-            document.getElementById('task-table').innerHTML = html;
-        }
+async function loadTasks() {
+    const res = await fetch('api.php?action=get_tasks');
+    const d = await res.json();
+    let html = '';
+    
+    if(d.data && d.data.length > 0) {
+        d.data.forEach(t => {
+            // Delete Permission Check
+            let del = (currentUser.role !== 'sales_rep') 
+                ? `<button class="btn btn-sm btn-outline-danger" onclick="deleteItem('tasks', ${t.id})" title="Delete"><i class="bi bi-trash-fill"></i></button>` 
+                : '';
 
-        async function loadTeam() {
-            const res = await fetch('api.php?action=get_users');
-            const d = await res.json();
-            let html = '';
-            if (d.data) {
-                d.data.forEach(u => {
-                    const initials = u.full_name ? u.full_name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase() : '??';
-                    const roleRaw = u.role || 'Unknown';
-                    const roleDisplay = roleRaw.replace('_', ' ').toUpperCase();
-                    let badgeClass = 'bg-white text-dark';
-                    if (roleRaw === 'super_admin') badgeClass = 'bg-danger text-white border-danger';
-                    else if (roleRaw === 'admin') badgeClass = 'bg-dark text-white border-dark';
-                    else if (roleRaw === 'manager') badgeClass = 'bg-warning text-dark border-dark';
+            // Status Badge Logic
+            let badgeClass = 'bg-secondary';
+            if (t.status === 'Completed') badgeClass = 'bg-success';
+            else if (t.status === 'In Progress') badgeClass = 'bg-warning text-dark';
 
-                    let avatarHtml = '';
-                    if (u.avatar && u.avatar !== '') {
-                        avatarHtml = `<img src="${u.avatar}" class="rounded-circle border border-2 border-dark" style="width: 80px; height: 80px; object-fit: cover; box-shadow: 4px 4px 0 #000;">`;
-                    } else {
-                        avatarHtml = `<div class="d-flex align-items-center justify-content-center border border-2 border-dark bg-white rounded-circle" style="width: 80px; height: 80px; font-weight: 700; font-size: 1.5rem; font-family: 'Space Mono'; box-shadow: 4px 4px 0 #000 !important;">${initials}</div>`;
+            html += `<tr>
+                <td>
+                    <div class="fw-bold" style="cursor:pointer" onclick="openViewTask(${t.id})">
+                        ${t.status === 'Completed' ? '<s class="text-muted">' + t.title + '</s>' : t.title}
+                    </div>
+                    <div class="small text-muted text-truncate" style="max-width:200px">${t.description||''}</div>
+                </td>
+                <td>${t.due_date}</td>
+                <td>${t.assigned_name}</td>
+                <td>
+                    <span class="badge ${badgeClass} border border-dark rounded-pill">${t.status.toUpperCase()}</span>
+                </td>
+                <td>
+                    <div class="d-flex gap-1">
+                        <button class="btn btn-sm btn-outline-dark" onclick="openViewTask(${t.id})" title="View Details">
+                            <i class="bi bi-eye-fill"></i>
+                        </button>
+                        <button class="btn btn-sm btn-outline-primary" onclick="openEditTask(${t.id})" title="Update Task">
+                            <i class="bi bi-pencil-fill"></i>
+                        </button>
+                        ${del}
+                    </div>
+                </td>
+            </tr>`;
+        });
+    } else {
+        html = '<tr><td colspan="5" class="text-center text-muted py-3">No tasks found.</td></tr>';
+    }
+    
+    document.getElementById('task-table').innerHTML = html;
+}
+
+async function loadTeam() {
+    const res = await fetch('api.php?action=get_users');
+    const d = await res.json();
+    let html = '';
+    
+    if (d.data) {
+        d.data.forEach(u => {
+            const initials = u.full_name ? u.full_name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase() : '??';
+            const roleRaw = u.role || 'Unknown';
+            const roleDisplay = roleRaw.replace('_', ' ').toUpperCase();
+            
+            // Badge Styling
+            let badgeClass = 'bg-white text-dark';
+            if (roleRaw === 'super_admin') badgeClass = 'bg-danger text-white border-danger';
+            else if (roleRaw === 'admin') badgeClass = 'bg-dark text-white border-dark';
+            else if (roleRaw === 'manager') badgeClass = 'bg-warning text-dark border-dark';
+
+            // Avatar Logic
+            let avatarHtml = u.avatar 
+                ? `<img src="${u.avatar}" class="rounded-circle border border-2 border-dark" style="width: 80px; height: 80px; object-fit: cover;">`
+                : `<div class="d-flex align-items-center justify-content-center border border-2 border-dark bg-white rounded-circle" style="width: 80px; height: 80px; font-weight: 700;">${initials}</div>`;
+
+            // --- PERMISSION LOGIC START ---
+            let actions = '';
+            
+            // Prevent editing yourself
+            if (u.id != currentUser.id) {
+                let canEdit = false;
+
+                // 1. Super Admin: Controls Everyone
+                if (currentUser.role === 'super_admin') {
+                    canEdit = true;
+                } 
+                // 2. Admin: Controls Managers & Sales Reps
+                else if (currentUser.role === 'admin') {
+                    if (u.role !== 'super_admin' && u.role !== 'admin') {
+                        canEdit = true;
                     }
+                }
+                // 3. Manager: Controls Sales Reps ONLY (Added this block)
+                else if (currentUser.role === 'manager') {
+                    if (u.role === 'sales_rep') {
+                        canEdit = true;
+                    }
+                }
 
-                    html += `
-                    <div class="col-12 col-md-6 col-lg-4 mb-4">
-                        <div class="card-neo h-100 text-center p-4">
-                            <div class="d-flex justify-content-center mb-3">${avatarHtml}</div>
-                            <h5 class="fw-bold text-uppercase mb-1" style="font-family: 'Space Mono';">${u.full_name}</h5>
-                            <div class="text-muted small font-monospace mb-3 text-break">${u.email || 'No Email'}</div>
-                            <div class="mb-3"><span class="badge ${badgeClass} border border-2 rounded-0 px-3 py-2 fw-bold" style="font-size: 0.75rem; letter-spacing: 1px;">${roleDisplay}</span></div>
-                            ${(currentUser.role === 'admin' || currentUser.role === 'super_admin') && u.id != currentUser.id ? `<button class="btn btn-sm btn-outline-danger w-100 border-2 rounded-0 fw-bold" onclick="deleteItem('users', ${u.id})">REMOVE ACCESS</button>` : ''}
+                if (canEdit) {
+                    // Note: Managers usually don't need the "Change Role" button since 
+                    // they can only assign 'Sales Rep' anyway. 
+                    // So for Managers, we can optionally hide the Role button or show it.
+                    // This code shows both buttons if they have permission.
+                    
+                    actions = `
+                        <div class="d-flex gap-2 mt-3">
+                            ${currentUser.role !== 'manager' ? 
+                            `<button class="btn btn-sm btn-outline-dark flex-grow-1 fw-bold" onclick="openRoleModal(${u.id}, '${u.role}')">
+                                <i class="bi bi-shield-lock"></i> ROLE
+                            </button>` : ''}
+                            
+                            <button class="btn btn-sm btn-outline-danger fw-bold flex-grow-1" onclick="deleteItem('users', ${u.id})">
+                                REMOVE ACCESS
+                            </button>
                         </div>
-                    </div>`;
-                });
-            } else {
-                html = '<p class="text-center text-muted">No team members found.</p>';
+                    `;
+                }
             }
-            document.getElementById('team-grid').innerHTML = html;
-        }
+            // --- PERMISSION LOGIC END ---
 
+            html += `
+            <div class="col-12 col-md-6 col-lg-4 mb-4">
+                <div class="card-neo h-100 text-center p-4">
+                    <div class="d-flex justify-content-center mb-3">${avatarHtml}</div>
+                    <h5 class="fw-bold text-uppercase mb-1 brand-font">${u.full_name}</h5>
+                    <div class="text-muted small font-monospace mb-3 text-break">${u.email}</div>
+                    <div><span class="badge ${badgeClass} border border-2 rounded-0 px-3 py-2 fw-bold small">${roleDisplay}</span></div>
+                    ${actions}
+                </div>
+            </div>`;
+        });
+    }
+    document.getElementById('team-grid').innerHTML = html || '<p class="text-center">No team found.</p>';
+}
         function loadTeamMembers() {
             const dropdowns = ['taskAssignSelect','dealAssignSelect','editTaskAssignSelect','editDealAssignSelect'];
             fetch('api.php?action=get_users').then(r=>r.json()).then(d => {
@@ -1310,13 +1678,14 @@ if ($currentUser) {
             const fd = new FormData(); fd.append('task_id', id); fd.append('task_status', status);
             openEditTask(id);
         }
-
-        function deleteItem(type, id) {
-            if(confirm('CONFIRM DELETE?')) {
-                const fd = new FormData(); fd.append('type', type); fd.append('id', id);
-                fetch('api.php?action=delete_item', {method:'POST', body:fd}).then(()=>loadAllData());
-            }
-        }
+let pendingDelete = null;
+function deleteItem(type, id) {
+    // Store data for the "Yes" button to use
+    pendingDelete = { type: type, id: id };
+    
+    // Open the Custom Modal
+    new bootstrap.Modal(document.getElementById('deleteConfirmModal')).show();
+}
 
         function exportData(type) { window.location.href = `api.php?action=export_data&type=${type}`; }
         function showWebFormModal() { new bootstrap.Modal(document.getElementById('webFormModal')).show(); document.getElementById('embedCode').value = `<form action="public_api.php" method="POST"><input type="hidden" name="api_key" value="crm_secret_key_123"><input name="email" required><button>Submit</button></form>`; }
@@ -1330,19 +1699,52 @@ if ($currentUser) {
             new bootstrap.Modal(document.getElementById('notesModal')).show();
         }
 
-        function setupForm(id, action, modal, refresh) {
-            document.getElementById(id).addEventListener('submit', function(e) {
-                e.preventDefault();
-                const fd = new FormData(this);
-                fetch('api.php?action='+action, {method:'POST', body:fd}).then(r=>r.json()).then(d => {
-                    if(d.status==='success') { 
-                        if(modal) bootstrap.Modal.getInstance(document.getElementById(modal)).hide(); 
-                        if(id === 'formAddNote') { this.reset(); loadNotes(document.getElementById('note_related_to').value, document.getElementById('note_related_id').value); }
-                        else { this.reset(); refresh(); }
-                    } else alert(d.message);
-                });
-            });
-        }
+function setupForm(id, action, modal, refresh) {
+    const form = document.getElementById(id);
+    if(!form) return; // Safety check
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const fd = new FormData(this);
+        
+        fetch('api.php?action=' + action, {method: 'POST', body: fd})
+        .then(r => r.json())
+        .then(d => {
+            if(d.status === 'success') { 
+                // Close Modal
+                if(modal) {
+                    const modalEl = document.getElementById(modal);
+                    const modalInstance = bootstrap.Modal.getInstance(modalEl);
+                    if(modalInstance) modalInstance.hide();
+                }
+
+                // Refresh Data
+                if(id === 'formAddNote') { 
+                    this.reset(); 
+                    // Assuming openNotes handles the refresh logic internally or logic exists elsewhere
+                    const relatedTo = document.getElementById('note_related_to').value;
+                    const relatedId = document.getElementById('note_related_id').value;
+                    // If you have a specific function to reload notes, call it here
+                    openNotes(relatedTo, relatedId); 
+                } else { 
+                    this.reset(); 
+                    if(refresh) refresh(); 
+                }
+
+                // SHOW SUCCESS TOAST
+                showToast('Action successful', 'success');
+
+            } else { 
+                // SHOW ERROR TOAST (Instead of Alert)
+                showToast(d.message || 'An error occurred', 'error');
+            }
+        })
+        .catch(err => {
+            console.error(err);
+            showToast('Connection failed', 'error');
+        });
+    });
+}
 
         setupForm('formCustomer', 'add_customer', 'modalCustomer', loadCustomers);
         setupForm('formEditCustomer', 'update_customer', 'editCustomerModal', loadCustomers);
@@ -1374,6 +1776,92 @@ if ($currentUser) {
                 setTimeout(() => toast.remove(), 300);
             }, 4000);
         }
+        // Open Modal and Populate Options based on WHO is logged in
+function openRoleModal(userId, currentRole) {
+    document.getElementById('role_user_id').value = userId;
+    const select = document.getElementById('role_select');
+    select.innerHTML = '';
+
+    // Options available to set
+    let options = [
+        {val: 'sales_rep', txt: 'Sales Rep'},
+        {val: 'manager', txt: 'Manager'}
+    ];
+
+    // Only Super Admin or Admin can see 'Admin' option
+    if (currentUser.role === 'super_admin' || currentUser.role === 'admin') {
+        options.push({val: 'admin', txt: 'Admin'});
+    }
+
+    // Only Super Admin can see 'Super Admin' option
+    if (currentUser.role === 'super_admin') {
+        options.push({val: 'super_admin', txt: 'Super Admin'});
+    }
+
+    // Build HTML
+    options.forEach(opt => {
+        let sel = (opt.val === currentRole) ? 'selected' : '';
+        select.innerHTML += `<option value="${opt.val}" ${sel}>${opt.txt}</option>`;
+    });
+
+    new bootstrap.Modal(document.getElementById('modalChangeRole')).show();
+}
+function openViewTask(id) {
+    // 1. Fetch Details via API
+    fetch(`api.php?action=get_task_detail&id=${id}`)
+        .then(r => r.json())
+        .then(d => {
+            if(d.status === 'success') {
+                const t = d.data;
+
+                // 2. Populate Fields
+                document.getElementById('view_task_id').value = t.id;
+                document.getElementById('view_task_title').innerText = t.title;
+                document.getElementById('view_task_date').innerText = t.due_date;
+                document.getElementById('view_task_desc').innerText = t.description || 'No description provided.';
+                
+                // 3. Status Styling
+                const statusEl = document.getElementById('view_task_status');
+                statusEl.innerText = t.status;
+                statusEl.className = 'badge rounded-0 border border-dark text-uppercase px-3 py-2 fs-6 ';
+                if(t.status === 'Completed') statusEl.classList.add('bg-success', 'text-white');
+                else if(t.status === 'In Progress') statusEl.classList.add('bg-warning', 'text-dark');
+                else statusEl.classList.add('bg-secondary', 'text-white');
+
+                // 4. Assignee Avatar Logic
+                const avatarContainer = document.getElementById('view_task_avatar');
+                if (t.assigned_avatar) {
+                    avatarContainer.innerHTML = `<img src="${t.assigned_avatar}" class="rounded-circle border border-dark" style="width: 35px; height: 35px; object-fit: cover;">`;
+                } else {
+                    const initials = t.assigned_name ? t.assigned_name.substring(0, 2).toUpperCase() : '??';
+                    avatarContainer.innerHTML = `<div class="d-flex align-items-center justify-content-center border border-dark bg-white rounded-circle fw-bold" style="width: 35px; height: 35px; font-size:0.8rem;">${initials}</div>`;
+                }
+                document.getElementById('view_task_assignee').innerText = t.assigned_name || 'Unassigned';
+
+                // 5. Related To Logic
+                let relatedText = 'None';
+                if(t.related_to && t.related_id) {
+                    const type = t.related_to.charAt(0).toUpperCase() + t.related_to.slice(1); // Capitalize
+                    relatedText = `${type}: ${t.related_name}`;
+                }
+                document.getElementById('view_task_related').innerText = relatedText;
+
+                // 6. Show Modal
+                new bootstrap.Modal(document.getElementById('viewTaskModal')).show();
+            }
+        });
+}
+
+// Helper to switch from View -> Edit
+function switchToEditTask() {
+    const id = document.getElementById('view_task_id').value;
+    // Close View Modal
+    bootstrap.Modal.getInstance(document.getElementById('viewTaskModal')).hide();
+    // Open Edit Modal (uses your existing function)
+    openEditTask(id);
+}
+// Attach Form Listener
+setupForm('formChangeRole', 'update_user_role', 'modalChangeRole', loadTeam);
     </script>
 </body>
 </html>
