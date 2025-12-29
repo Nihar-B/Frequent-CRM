@@ -56,7 +56,7 @@ try {
 
         // Utils
         case 'get_audit_history': getAuditHistory($pdo); break;
-        case 'get_users': getUsers($pdo); break;
+        case 'get_users': getUsers($pdo, $role); break;
         case 'add_user': addUser($pdo, $role); break;
         case 'update_user_role': updateUserRole($pdo, $uid, $role); break;
         case 'delete_item': deleteItem($pdo, $role); break;
@@ -286,11 +286,27 @@ function logChange($pdo, $uid, $type, $id, $field, $old, $new) {
     }
 }
 
-function getUsers($pdo) { 
-    // Added 'avatar' to the SELECT statement below
+function getUsers($pdo, $currentRole) { 
+    $sql = "SELECT id, full_name, email, role, avatar FROM users WHERE deleted_at IS NULL";
+
+    // HIERARCHY LOGIC
+    if ($currentRole === 'admin') {
+        // Admin: Can see everyone EXCEPT Super Admin
+        $sql .= " AND role != 'super_admin'";
+    }
+    elseif ($currentRole === 'manager') {
+        // Manager: Can see Managers and Sales Reps (Hides Admin & Super Admin)
+        $sql .= " AND role NOT IN ('super_admin', 'admin')";
+    }
+    elseif ($currentRole === 'sales_rep') {
+        // Sales Rep: Can only see other Sales Reps (Hides everyone above)
+        $sql .= " AND role = 'sales_rep'";
+    }
+    // Super Admin sees everyone (No WHERE clause needed)
+
     echo json_encode([
         'status'=>'success', 
-        'data'=>$pdo->query("SELECT id, full_name, email, role, avatar FROM users WHERE deleted_at IS NULL")->fetchAll()
+        'data'=>$pdo->query($sql)->fetchAll()
     ]); 
 }
 function addUser($pdo, $currentRole) {
